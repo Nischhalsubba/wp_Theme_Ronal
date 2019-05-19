@@ -1,0 +1,102 @@
+footer {
+	background: $color-secondary;
+	color: $color-primary;
+
+	u{
+		&:before {
+			content: "";
+			display: inline-block;
+			width: 20%;
+			position: absolute;
+			left: 0.1rem;
+			top: 4rem;
+			border-bottom:none;
+		}
+		// Disabling the yellow border in footer
+	}
+
+	.footer-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr 2fr;
+
+		.description {
+			width: 420px;
+			margin-top: 25px;
+			padding-bottom: 100px;
+
+			h5 {
+				font-weight: 600;
+				@include font-size(20);
+				padding-top: 10px;
+				// padding for adjusting about ronal and find me spacing
+
+				u {
+					text-decoration: none;
+					border-bottom: 3px solid $color-primary;
+				}
+			}
+
+			p {
+				padding-top: 20px;
+				padding-right: 20px;
+				@include font-size(15);
+			}
+
+			.find_information {
+				padding-top: 20px;
+
+				em {
+					display: block;
+					@include font-size(15);
+				}
+			}
+		}
+
+		.tech_used {
+			background: $color-primary;
+			display: grid;
+			grid-template-columns: 1fr;
+			grid-template-rows: 80px 1fr;
+
+			h3 {
+				color: $color-secondary;
+				@include font-size(25);
+				letter-spacing: 2px;
+				font-weight: 600;
+				text-transform: uppercase;
+				margin: auto;
+				border-bottom: 3px solid $color-accent;
+			}
+
+			img {
+				display: block;
+				padding: 5px 15px;
+				margin: auto;
+			}
+
+		}
+
+		.cta {
+			.footer_contact_follow {
+				margin-left: 100px;
+				margin-top: 25px;
+
+				h4 {
+					@include font-size(25);
+					font-weight: 600;
+					padding-bottom: 20px;
+
+					u {
+						text-decoration: none;
+						border-bottom: 3px solid $color-primary;
+					}
+				}
+
+				p {
+					@include font-size(15);
+					font-weight: 500;
+				}
+			}
+		}
+	}
+}

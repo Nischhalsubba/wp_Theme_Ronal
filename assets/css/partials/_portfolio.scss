@@ -1,0 +1,24 @@
+.grey-space{
+    background: $background-grey;
+}
+
+h1{
+    margin:0;
+}
+
+.jumbotron{
+    text-align: center;
+    padding: 70px 0px;
+    .jumbotron-title{
+        font-weight:500;
+        @include font-size(40);
+        padding-bottom: 35px;
+        text-transform: uppercase;
+    }
+
+    .jumbotron-content{
+        font-weight:300;
+        @include font-size(25);
+        line-height: 40px;
+    }
+}

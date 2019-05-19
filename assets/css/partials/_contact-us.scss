@@ -1,0 +1,174 @@
+.grey-box {
+	width: 75%;
+	margin: auto;
+	border: 1px solid $text-light-grey;
+	padding: 65px 65px;
+	box-shadow: 0px 0px 11px 1px $background-grey;
+}
+
+.contact_me {
+	background: url('./assets/img/contact-me.jpg');
+	background-position: center;
+	background-size: cover;
+	color: $color-secondary;
+}
+
+.contact-item {
+	padding: 25px;
+	transition: 0.5s all ease-in;
+
+	&:hover {
+		box-shadow: 0px 0px 11px 1px $background-grey;
+	}
+
+	.item-content-title {
+		margin-bottom: 5px;
+
+		h4 {
+			@include font-size(20);
+			font-weight: 600;
+		}
+	}
+
+	.item-content-description {
+		margin-bottom: 5px;
+
+		p {
+			@include font-size(15);
+			font-weight: 300;
+			text-align: justify;
+		}
+	}
+
+	button {
+		margin: 0;
+	}
+}
+
+.contact-area {
+
+	.contact-area-lt {
+		background: $color-primary;
+		color: $color-secondary;
+		width: 60%;
+		margin: auto;
+		background: url('./assets/img/opacity-dot.png') no-repeat;
+		background-size: cover;
+		background-blend-mode: darken;
+		border: 2px solid $color-accent;
+        width: 100%;
+        height: 100%;
+		// padding: 4rem 0rem;
+		// height: 100%;
+
+		.contact_area_info {
+            text-align: center;
+            padding: 3rem 0;
+            width:50%;
+            margin: auto;
+            .img_holder{
+                border-radius: 50%;
+                width: 250px;
+                height: 250px;
+                overflow: hidden;
+                margin: auto;
+                border: 3px solid $color-accent;
+
+                img{
+                    height:100%;
+                }
+            }
+
+			h1 {
+				font-weight: 600;
+                @include font-size(35);
+                line-height:35px;
+                text-transform: uppercase;
+			}
+
+			h2 {
+				font-weight: 400;
+                @include font-size(20);
+                line-height:20px;
+                margin-top: 15px;
+                margin-bottom: 15px;
+                color:$text-light-grey;  
+			}
+
+			h3 {
+				font-weight: 400;
+				@include font-size(25);
+                line-height: 25px;
+                margin-bottom: 15px;
+                color:$text-light-grey;
+                // border: 1px solid red;
+            }
+            h4{
+                font-weight: 400;
+                @include font-size(20);
+                color:$text-light-grey;
+            }
+		}
+
+	}
+
+
+	.contact-area-rt {
+		padding: 50px;
+
+		input {
+			display: block;
+			border: 2px solid $color-primary;
+			border-radius: 20px;
+			margin-bottom: 20px;
+			padding-left: 15px;
+			@include font-size(14);
+			color: $color-primary;
+			height: 35px;
+			width: 300px;
+		}
+
+		::placeholder {
+			color: $color-primary;
+		}
+
+		textarea {
+			border: 2px solid $color-primary;
+			width: 300px;
+			border-radius: 20px;
+			padding-top: 15px;
+			padding-left: 15px;
+			margin-bottom: 20px;
+			@include font-size(14);
+		}
+
+		button {
+			background: none !important;
+		}
+	}
+}
+
+.contact_services {
+
+	.box {
+        
+		&:hover i {
+            
+			color: $color-accent;
+		}
+	}
+
+	.contact-us-service {
+		width: 250px;
+		padding: 40px;
+		box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.04);
+		border-bottom: 2px solid $color-secondary;
+        padding: 50px;
+        background: $color-primary;
+        transition: all 0.3s ease-out;
+
+        &:hover{
+            border-bottom: 2px solid $color-accent;
+        }
+	}
+}

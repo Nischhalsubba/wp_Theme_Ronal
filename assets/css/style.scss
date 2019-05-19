@@ -1,10 +1,10 @@
 /*!
-Theme Name: WPGulpTheme
+Theme Name: RonalTheme
 Theme URI: https://github.com/ahmadawais/WPGulpTheme
 Description: A theme to demonstrate simplest implementation of WPGulp Boilerplate.
 Version: 2.2.0
-Author: Ahmad Awais
-Author URI: https://twitter.com/MrAhmadAwais/
+Author: Ronal
+Author URI:
 License: MIT
 Text Domain: WPGT
 */
@@ -17,6 +17,10 @@ Text Domain: WPGT
 @import 'vendor/normalize';
 @import 'vendor/sanitize';
 
+//glide css
+@import 'vendor/glide.core.min.css';
+@import 'vendor/glide.theme.min.css';
+
 // Structure.
 @import 'partials/structure';
 
@@ -25,3 +29,30 @@ Text Domain: WPGT
 
 // Base.
 @import 'partials/base';
+
+//Layout
+@import 'partials/header';
+
+//assit
+@import 'partials/assist';
+
+//Frontpage
+@import 'partials/frontpage';
+
+//cards
+@import 'partials/cards';
+
+//Portfolio
+@import 'partials/portfolio';
+
+//contact us
+@import 'partials/contact-us';
+
+//Testimonial
+@import 'partials/layout';
+
+//Single Portfolio
+@import 'partials/single-portfolio';
+
+//Footer
+@import 'partials/footer';

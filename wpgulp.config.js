@@ -10,7 +10,7 @@
 module.exports = {
 
 	// Project options.
-	projectURL: 'wpgulp.local', // Local project URL of your already running WordPress site. Could be something like wpgulp.local or localhost:3000 depending upon your local WordPress setup.
+	projectURL: 'http://localhost/wordpress', // Local project URL of your already running WordPress site. Could be something like wpgulp.local or localhost:3000 depending upon your local WordPress setup.
 	productURL: './', // Theme/Plugin URL. Leave it like it is, since our gulpfile.js lives in the root folder.
 	browserAutoOpen: false,
 	injectChanges: true,
@@ -43,13 +43,13 @@ module.exports = {
 	watchPhp: './**/*.php', // Path to all PHP files.
 
 	// Translation options.
-	textDomain: 'WPGULP', // Your textdomain here.
-	translationFile: 'WPGULP.pot', // Name of the translation file.
+	textDomain: 'RonalTheme', // Your textdomain here.
+	translationFile: 'RonalTheme.pot', // Name of the translation file.
 	translationDestination: './languages', // Where to save the translation files.
-	packageName: 'WPGULP', // Package name.
-	bugReport: 'https://AhmadAwais.com/contact/', // Where can users report bugs.
-	lastTranslator: 'Ahmad Awais <your_email@email.com>', // Last translator Email ID.
-	team: 'AhmadAwais <your_email@email.com>', // Team's Email ID.
+	packageName: 'RonalTheme', // Package name.
+	bugReport: 'https://nsubba.com.np/contact/', // Where can users report bugs.
+	lastTranslator: 'Nischal Raj Subba <hinischalsubba@email.com>', // Last translator Email ID.
+	team: '', // Team's Email ID.
 
 	// Browsers you care about for autoprefixing. Browserlist https://github.com/ai/browserslist
 	// The following list is set as per WordPress requirements. Though, Feel free to change.

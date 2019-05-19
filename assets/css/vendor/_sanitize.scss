@@ -192,27 +192,27 @@ textarea {
 
 // specify the minimum height of form elements
 
-button,
-[type="button"],
-[type="date"],
-[type="datetime"],
-[type="datetime-local"],
-[type="email"],
-[type="month"],
-[type="number"],
-[type="password"],
-[type="reset"],
-[type="search"],
-[type="submit"],
-[type="tel"],
-[type="text"],
-[type="time"],
-[type="url"],
-[type="week"],
-select,
-textarea {
-	min-height: $form-element-min-height;
-}
+// button,
+// [type="button"],
+// [type="date"],
+// [type="datetime"],
+// [type="datetime-local"],
+// [type="email"],
+// [type="month"],
+// [type="number"],
+// [type="password"],
+// [type="reset"],
+// [type="search"],
+// [type="submit"],
+// [type="tel"],
+// [type="text"],
+// [type="time"],
+// [type="url"],
+// [type="week"],
+// select,
+// textarea {
+// 	min-height: $form-element-min-height;
+// }
 
 // specify the font family of code elements
 

@@ -1,0 +1,171 @@
+.box {
+	width: 380px;
+	// background-color: #eee;
+	// box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
+	border-radius: 4px;
+	overflow: hidden;
+	transition: all .3s ease-out;
+	position: relative;
+
+	&:hover {
+		// box-shadow: 8px 8px 20px rgba(0,0,0,0.2);
+		transform: scale(1.005);
+	}
+}
+
+.box-border {
+	//border: 3px solid $color-secondary;
+
+	.box_icon {
+		i {
+			@include font-size(30);
+			transition: all 0.3s ease-out;
+		}
+	}
+
+	.box_title {
+		@include font-size(30);
+		font-weight: 300;
+	}
+}
+
+.top {
+	height: 200px;
+	position: relative;
+	background-size: cover;
+
+	.image {
+		position: relative;
+		height: 100%;
+		overflow: hidden;
+	}
+
+	.title {
+		position: relative;
+		bottom: 45px;
+		right: 15px;
+
+		.title-lt {
+			float: right;
+			background: $color-primary;
+			color: black;
+			padding: 15px;
+		}
+	}
+}
+
+.bottom {
+	padding: 10px 20px 20px 20px;
+	background: $color-primary;
+	position: relative;
+
+	&:after {
+		content: "";
+		display: inline-block;
+		width: 100%;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		border-bottom: 3px solid $color-accent;
+	}
+
+	.bottom_container {
+		position: relative;
+		top: 0px;
+
+		b {
+			margin: 0;
+			@include font-size(15);
+			display: block;
+		}
+
+		.blog-content {
+			p {
+				@include font-size(14);
+				line-height: 20px;
+
+			}
+		}
+
+		hr {
+			height: 2px;
+			background: $background-grey;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+
+		.title-lt {
+			float: left;
+		}
+
+		.title-rt {
+			float: right;
+		}
+	}
+}
+
+.buttons {
+	margin-top: 30px;
+	display: flex;
+	justify-content: space-between;
+
+	.btn {
+		display: inline-block;
+		padding: 10px 25px;
+		letter-spacing: 2px;
+		margin: 0;
+	}
+}
+
+.btnWebsite {
+	background-color: #494848;
+	color: white;
+	transition: .2s;
+
+	&:hover {
+		background-color: darken($color: #000000, $amount: 20%);
+		color: #ffffff;
+	}
+}
+
+
+.cards {
+	border-left: 4px solid #707070;
+	border-bottom: 4px solid #707070;
+	width: 400px;
+	height: 400px;
+	background: #ffffff;
+	padding: 25px;
+	transition: 0.3s all linear;
+	word-wrap: break-word;
+	z-index: 4;
+
+	&:hover {
+		box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28); //Same as google search hover
+	}
+
+	h3 {
+		a {
+			font-weight: 600;
+			@include font-size(25);
+		}
+	}
+
+	p {
+		font-weight: 300;
+		@include font-size(15);
+		line-height: 25px;
+
+	}
+
+	a {
+		font-weight: 600;
+		@include font-size(10);
+		transition: 0.3s all ease-in-out;
+
+		&:hover i {
+			transition: 0.3s all ease-in-out;
+			margin-left: 2px;
+		}
+	}
+}

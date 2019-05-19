@@ -1,34 +1,28 @@
 <?php
 /**
- * Index
+ * The main template file.
  *
- * Theme index.
+ * This is the most generic template file in a WordPress theme
+ * and one of the two required files for a theme (the other being style.css).
+ * It is used to display a page when nothing more specific matches a query.
+ * E.g., it puts together the home page when no home.php file exists.
+ * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
- * @since   1.0.0
- * @package WP
  */
-
-// Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
 get_header(); ?>
 
-<div class="wrap">
-	<div class="content">
-		<h1><?php esc_html_e( 'WP Gulp Boilerplate!', 'WP' ); ?></h1>
-		<p>
-			<?php
-				esc_html_e( 'A simple to use gulp boilerplate for gulp beginners and WordPress developers. This is a demo theme and for production make sure you use the ', 'WP' );
-				echo '<a href="https://github.com/ahmadawais/WPGulp/">WPGulp →</a>';
-				esc_html_e( ' repository for using gulpfile.js in your theme or plugin.', 'WP' );
-				echo '<div><strong>🌟 <a href="https://github.com/ahmadawais/WPGulp">STAR WPGULP</strong> →</div>';
-			?>
-		</p>
-	</div>
-	<!-- /.content -->
-</div>
-<!-- /.wrap -->
+<div class="container">
+<h3>I am index</h3>
 
+<?php while(have_posts()) : the_post(); ?>
+
+	title: <?php the_title(); ?><br />
+	ID: <?php the_ID(); ?><br />
+	time: <?php the_time(get_option('date_format')); ?><br />
+	excerpt: <?php the_excerpt(); ?><br />
+	link: <a href="<?php the_permalink(); ?>">link</a><br />
+	<hr />
+
+<?php endwhile; ?>
+</div>
 <?php get_footer(); ?>

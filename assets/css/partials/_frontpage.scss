@@ -1,0 +1,413 @@
+ul {
+	li {
+		display: inline;
+	}
+}
+
+.banner {
+	width: 100%;
+	height: 100vh;
+	// overflow: hidden;
+
+	&:after {
+		content: "";
+		display: block;
+		background: rgba(0, 0, 0, 0.3);
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		z-index: 2;
+		position: absolute;
+	}
+
+	.image {
+		z-index: 0;
+
+		img {
+			width: 100vw;
+			height: 100vh;
+			filter: grayscale(100%);
+			object-fit: cover;
+		}
+	}
+
+	button {
+		margin-left: 30px;
+		margin-top: 30px;
+	}
+}
+
+.frontpage-quote {
+	position: absolute;
+	margin: auto;
+	z-index: 1;
+	width: 700px; //added
+	height: 400px; //added
+	background: $color-primary; //added
+	left: 5rem;
+	bottom: 6rem;
+	color: $color-secondary;
+	z-index: 3;
+	padding-left: 45px;
+	padding-top: 45px;
+	transition: 0.3s all linear;
+	border-bottom: 5px solid $color-accent;
+
+	&:hover {
+		border-bottom: 5px solid $color-accent;
+	}
+
+	h3 {
+		@include font-size(25);
+		font-weight: 300;
+	}
+
+	h1 {
+		@include font-size(45);
+		line-height: 45px;
+		font-weight: 600;
+		position: relative;
+	}
+
+	.btn {
+		position: absolute;
+		top: 19rem;
+	}
+}
+
+.btn-white {
+	color: $color-secondary;
+	background: $color-primary;
+}
+
+.btn {
+	display: inline;
+	padding: 10px 15px;
+}
+
+.btn h4 {
+	font-weight: 400;
+	@include font-size(20);
+	display: inline;
+
+}
+
+.white-space {
+	background: $color-primary;
+	// margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+.service {
+	text-align: center;
+	margin-top: 20px;
+	box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.04);
+	width: 100%;
+	border-bottom: 2px solid $color-accent;
+	padding: 50px;
+	transition: all 0.3s ease-out;
+
+	&:hover {
+		padding-top: 25px;
+		transition: all 0.3s ease-out;
+		transform: scale(1.01);
+	}
+
+
+	.icon {
+		i {
+			@include font-size(35);
+		}
+	}
+
+	.service_title {
+		margin: 10px 0px;
+
+		h4 {
+			font-weight: 600;
+			@include font-size(20);
+			text-transform: uppercase;
+		}
+	}
+
+	.service_description {
+		p {
+			font-weight: 400;
+			@include font-size(14);
+			line-height: 22px;
+		}
+	}
+}
+
+// Homepage portfolio
+
+.item {
+	display: inline-block;
+	position: relative;
+	width: 400px;
+	height: 340px;
+	overflow: hidden;
+
+	.overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 10;
+		background-color: $color-secondary;
+
+		&:hover img {
+			opacity: 0.3;
+		}
+	}
+
+	button {
+		border: 1px solid $color-primary;
+		@include font-size(18);
+		letter-spacing: 2px;
+		padding: 10px 17px;
+		font-weight: 400;
+		transition: 0.3s all linear;
+	}
+
+	button:hover {
+		background-color: $color-primary;
+		border: none;
+		color: $color-secondary;
+		transition: 0.3s all linear;
+	}
+
+	a {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	img {
+		transition: 0.8s all ease-out;
+		width: 100%;
+		height: 100%;
+	}
+
+	&:hover img {
+		background: $color-secondary !important;
+		transform: scale(1.04);
+	}
+
+	&:hover .caption {
+		position: absolute;
+		margin: 0;
+		margin: 0 auto;
+		// background: rgba(0, 0, 0, 0.5);
+		color: $color-primary;
+		text-align: center;
+		width: 100%;
+		top: 25%;
+		opacity: 1;
+		transition: 0.3s all ease-out;
+	}
+
+
+
+	.caption {
+		position: absolute;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		// flex-flow: wrap;
+		margin: 0;
+		font-size: 32px;
+		margin: 0 auto;
+		// background: rgba(0, 0, 0, 1);
+		color: $color-primary;
+		text-align: center;
+		width: 100%;
+		height: 50%;
+		top: 50%;
+		opacity: 0;
+		transition: 0.3s all ease-out;
+
+		i {
+			@include font-size(14);
+			line-height: 14px;
+		}
+
+		h4 {
+			@include font-size(25);
+			line-height: 25px;
+			font-weight: 600;
+		}
+
+		i,
+		h4 {
+			padding: 0 0 20px 0;
+			margin: 0;
+		}
+	}
+}
+
+.cta_infograph {
+	margin-bottom: 100px;
+
+	.info_seo {
+		text-align: center;
+		// margin: auto; //Centering the info_seo text
+		// display: grid;
+		// grid-template-columns: 1fr;
+		// grid-template-rows: 1fr 1fr;
+		// grid-gap: 3rem;
+
+		.info_seo_graph {
+			// grid-gap: 10rem;
+			flex-basis: 25%;
+			margin: auto auto 0px auto;
+
+			h5 {
+				@include font-size(45);
+				font-weight: 300;
+				display: inline;
+			}
+
+			p {
+				@include font-size(15);
+			}
+		}
+
+		.title {
+			flex-basis: 25%;
+			margin: 65px auto auto auto;
+
+			h2 {
+				@include font-size(45);
+				letter-spacing: 3px;
+				font-weight: 300;
+				text-transform: uppercase;
+			}
+		}
+	}
+
+	.image {
+		img {
+			// float: right;
+			margin-top: 0px;
+			margin-bottom: -70px;
+			border: 25px solid $background-grey;
+		}
+	}
+}
+
+
+// About me
+.about_me {
+	.grid-col-2 {
+		justify-items: end;
+		grid-gap: 2rem;
+
+		.content_right {
+			width: 600px;
+			float: left;
+
+			h2 {
+				@include font-size(18);
+				color: $text-light-grey;
+				font-weight: 400;
+			}
+
+			h3 {
+				@include font-size(35);
+				font-weight: 600;
+
+				
+			}
+		}
+
+		.content_right_content {
+			margin-top: 50px;
+			color: $text-light-grey;
+
+			p {
+				@include font-size(16);
+				line-height: 25px;
+			}
+
+			ul {
+				li {
+					position: relative;
+					padding-left: 15px;
+					@include font-size(16);
+					margin-top: 10px;
+
+					&:before {
+						content: "\27A4";
+						display: block;
+						position: absolute;
+						left: -5px;
+					}
+				}
+			}
+		}
+	}
+
+	img {
+		max-width: 60%;
+	}
+
+	ul {
+		li {
+			display: block;
+		}
+	}
+}
+
+.head_title {
+	// display: grid;
+	// grid-template-columns: 1fr;
+	text-align: center;
+
+	h2 {
+		font-weight: 300;
+		@include font-size(45);
+		text-transform: uppercase;
+	}
+
+	blockquote {
+		margin-top: 15px;
+
+		h3 {
+			position: relative;
+			display: inline;
+			font-weight: 300;
+			margin-top: 30px;
+			@include font-size(20);
+
+			&::before {
+				position: absolute;
+				top: -20px;
+				left: -35px;
+				opacity: 0.2;
+				content: '“';
+				//background: url('../../img/quotes.png');
+				display: block;
+				color: $color-secondary;
+				font-family: 'Times New Roman', Times, serif;
+				font-weight: bold;
+				font-size: 3em;
+			}
+
+			&::after {
+				position: absolute;
+				top: -20px;
+				right: -40px;
+				opacity: 0.2;
+				content: '”';
+				//background: url('../../img/quotes.png');
+				display: block;
+				color: $color-secondary;
+				font-family: 'Times New Roman', Times, serif;
+				font-weight: bold;
+				font-size: 3em;
+			}
+		}
+	}
+}

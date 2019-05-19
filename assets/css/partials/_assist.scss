@@ -1,0 +1,64 @@
+// Includes class for design adjustment
+// Example: Margin , padding , spacing etc
+.container-fluid{
+	width: 100%;
+}
+
+.d-block {
+	display: block !important;
+}
+
+.d-inline {
+	display: inline;
+}
+
+// Margin
+.mb-10 {
+	margin-bottom: 3rem;
+}
+
+.mr-10 {
+	margin-right: 3rem;
+}
+
+.mt-60 {
+	margin-top: 60px;
+}
+
+
+.mt-25 {
+	margin-top: 25px;
+}
+
+.mt-15 {
+	margin-top: 15px;
+}
+
+.ptb-40 {
+	padding: 50px 0px;
+}
+
+.m-l-none {
+	margin-left: 0;
+}
+
+// Position
+.position-relative {
+	position: relative;
+}
+
+//Yellow underline
+.yellow_underline {
+	text-decoration: none;
+	position: relative;
+	display: inline !important;
+	&::before {
+		content: "";
+		display: inline-block;
+		width: 20%;
+		position: absolute;
+		left: 0.1rem;
+		top: 4rem;
+		border-bottom: 3px solid $color-accent;
+	}
+}

@@ -1,0 +1,149 @@
+//About me-homepage
+.about_me {
+	padding-top: 50px;
+}
+
+// service page
+.services {
+	padding: 70px 0px;
+	// background: url('./assets/img/texture.jpg');
+	background: $background-grey;
+	background-size: cover;
+	position: relative;
+
+	&:after {
+		content: "";
+		display: block;
+		background: rgba(0, 0, 0, 0.5);
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		z-index: 2;
+		position: absolute;
+	}
+
+	.title {
+		position: relative;
+		z-index: 3;
+		color: $color-primary;
+		padding-bottom: 50px;
+	}
+
+	.services-cards {
+		position: relative;
+		z-index: 4;
+
+		.services_box {
+			display: grid;
+			// grid-template-columns: 1fr 1fr;
+			grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+			background: #ffffff;
+
+			img {
+				object-fit: cover;
+				height: 100%;
+				padding: 40px;
+			}
+
+			.services_box_content {
+				text-align: left;
+				background: $color-primary;
+				padding: 50px;
+
+				h3 {
+					@include font-size(35);
+					font-weight: 600;
+					color: $color-secondary;
+
+				}
+
+				h4 {
+					i {
+						@include font-size(25);
+						font-weight: 600;
+						color: $color-secondary;
+					}
+				}
+
+				p {
+					@include font-size(18);
+					line-height: 30px;
+					font-weight: 300;
+					color: $color-secondary;
+					text-align: justify;
+					word-wrap: break-word;
+				}
+
+				a.btn {
+					@include font-size(20);
+					transition: 0.3s all linear;
+					border: 2px solid $color-secondary;
+					width: 150px;
+
+					&:hover {
+						background: $color-primary;
+						border: 2px solid black;
+					}
+				}
+			}
+		}
+	}
+
+	&:after {
+		content: "";
+		display: block;
+		background: rgba(0, 0, 0, 0.3);
+		width: 100%;
+		height: 100%;
+		z-index: 2;
+		position: absolute;
+		top: 0;
+	}
+
+	.title {
+		@include font-size(45);
+		font-weight: 300;
+	}
+
+	.services_cards {
+		padding-top: 70px;
+		margin: auto;
+		justify-items: center;
+		display: grid;
+	}
+}
+
+// Testimonial page
+.testimonial {
+	background: url('./assets/img/parquet.jpg') no-repeat center center;
+	height: 500px;
+	text-align: center;
+	padding: 10px; //To stop h2 from overflowing
+
+	h2 {
+		display: inline;
+		font-weight: 300;
+		@include font-size(45);
+		text-transform: uppercase;
+		padding: 10px;
+	}
+}
+
+//Blog
+.blog{
+	background: $background-grey;
+
+	.blog-title{
+		font-weight: 400;
+	}
+	
+}
+
+//Inner blog page
+.inner_blog{
+	.project_name{
+		a{
+			color: $color-primary;
+		}
+	}
+}

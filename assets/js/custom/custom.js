@@ -3,4 +3,4 @@
  *
  * @since 1.0.0
  */
-const sum = ( a, b ) => a + b;
+$(".main-nav li").has("ul").addClass("padre");

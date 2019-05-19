@@ -127,7 +127,7 @@ gulp.task( 'styles', () => {
 		.on( 'error', sass.logError )
 		.pipe( sourcemaps.write({ includeContent: false }) )
 		.pipe( sourcemaps.init({ loadMaps: true }) )
-		.pipe( autoprefixer( config.BROWSERS_LIST ) )
+		.pipe( autoprefixer( {browsers:config.BROWSERS_LIST,grid:'no-autoplace' } ) )
 		.pipe( sourcemaps.write( './' ) )
 		.pipe( lineec() ) // Consistent Line Endings for non UNIX systems.
 		.pipe( gulp.dest( config.styleDestination ) )
@@ -173,7 +173,7 @@ gulp.task( 'stylesRTL', () => {
 		.on( 'error', sass.logError )
 		.pipe( sourcemaps.write({ includeContent: false }) )
 		.pipe( sourcemaps.init({ loadMaps: true }) )
-		.pipe( autoprefixer( config.BROWSERS_LIST ) )
+		.pipe( autoprefixer( {browsers:config.BROWSERS_LIST,grid:'no-autoplace' } ) )
 		.pipe( lineec() ) // Consistent Line Endings for non UNIX systems.
 		.pipe( rename({ suffix: '-rtl' }) ) // Append "-rtl" to the filename.
 		.pipe( rtlcss() ) // Convert to RTL.
@@ -363,3 +363,5 @@ gulp.task(
 		gulp.watch( config.imgSRC, gulp.series( 'images', reload ) ); // Reload on customJS file changes.
 	})
 );
+
+

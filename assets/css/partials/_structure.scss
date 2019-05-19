@@ -6,77 +6,253 @@
 *,
 *:after,
 *:before {
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
 }
 
 /* html element 62.5% font-size for REM use i.e. 1rem = 10px*/
 html {
-    font-size: 62.5%;
-    height:100%;
-    min-height:100%;
+	font-size: 62.5%;
+	height: 100%;
+	min-height: 100%;
 }
 
 body {
-    font: 400 11px/1.4 sans-serif;
-    color: $c2;
-    margin: 0;
-    background: $w !important;
-    height:100%;
-    min-height:100%;
+	font: 400 11px/1.4 sans-serif;
+	color: $c2;
+	margin: 0;
+	background: $w !important;
+	height: 100%;
+	min-height: 100%;
+	font-family: 'Open Sans', sans-serif;
 
 
 }
+
 /* clear */
 .clear:before,
 .clear:after {
-    content: ' ';
-    display: table;
+	content: ' ';
+	display: table;
 }
 
 .clear:after {
-    clear: both;
+	clear: both;
 }
 
 .clear {
-    *zoom: 1;
+	*zoom: 1;
 }
 
 img {
-    max-width: 100%;
-    vertical-align: bottom;
-    height: auto;
+	max-width: 100%;
+	vertical-align: bottom;
+	height: auto;
 }
 
 a {
-    color: #444;
-    text-decoration: none;
+	color: $text-light-grey;
+	text-decoration: none;
 }
 
 a:hover {
-    color: #444;
+	color: $text-light-grey;
 }
 
 a:focus {
-    outline: 0;
+	outline: 0;
 }
 
 a:hover,
 a:active {
-    outline: 0;
+	outline: 0;
 }
 
 input:focus {
-    outline: 0;
-    border: 1px solid $c2;
+	outline: 0;
+	border: 1px solid $c2;
 }
 
-ol, ul {
+
+select {
+	width: 100%;
+}
+
+button {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.bg-grey {
+	background: $background-grey;
+}
+
+// Grid setup
+.contact-grid {
+	display: grid;
+	grid-template-columns: 0.1fr 1fr;
+}
+
+.grid-row-3 {
+	display: grid;
+	grid-template-rows: 1fr 1fr 1fr;
+	grid-gap: 30px;
+}
+
+.grid-row-1 {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr;
+}
+
+
+.grid-4 {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-gap: 6rem;
+}
+
+.dv-flex {
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+	align-content: space-evenly;
+}
+
+.grid-gap-40 {
+	grid-gap: 40px;
+}
+
+.grid-gap-100 {
+	grid-gap: 100px;
+}
+
+.grid-3 {
+	display: grid;
+	// color: red;
+	grid-template-columns: 1fr 1fr 1fr;
+	justify-items: center;
+}
+
+.grid-col-4{
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	justify-items: center;
 
 }
-select{
-    width: 100%;
+
+.grid-col-2 {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.grid-align-item-center {
+	align-items: center;
+}
+
+.grid-justify-item-end {
+	justify-items: end;
+}
+
+.grid-2 {
+	display: grid;
+	grid-template-columns: 1fr 0.5fr;
+}
+
+.hero {
+	background-image: linear-gradient(90deg, #444444, #222222);
+	color: $color-primary;
+	text-align: center;
+
+	.container {
+		padding: 50px 0px;
+	}
+
+	h1 {
+		@include font-size(40);
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+	}
+
+	h2 {
+		@include font-size(25);
+		font-weight: 300;
+	}
+
+	a {
+		@include font-size(25);
+		display: block;
+	}
+
+	.btn-white-outline{
+		&:hover{
+			border: 2px solid $color-accent;
+			background-color: $color-accent;
+			color: $color-secondary;
+		}
+	}
+}
+
+.btn {
+	background: $color-primary;
+	padding: 5px;
+	color: $color-secondary;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.btn-dark{
+	background: $color-secondary;
+	color: #ffffff;
+}
+
+.w-200{
+	width: 200px;
+}
+
+.w-250{
+	width: 250px;
+}
+
+.btn-yellow {
+	background: $color-accent;
+	color: $color-secondary;
+	transition: 0.3s all linear;
+
+	
+
+	&:hover{
+		background: $color-secondary;
+		transition: 0.5s all linear;
+	}
+
+	&:hover h4{
+		color: $color-primary;
+	}
+}
+
+.btn-white-outline {
+	border: 2px solid $color-primary;
+	background: none;
+	color: $color-primary;
+	transition: 0.5s all linear;
+
+	&:hover {
+		background: $color-primary;
+		border: 2px solid $color-primary;
+	}
+}
+
+.bg-black {
+	background-color: black;
+	color: $color-primary;
+}
+
+.text-center {
+	text-align: center;
 }
