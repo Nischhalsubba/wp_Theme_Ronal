@@ -6,7 +6,6 @@
 	<div class="img_holder">
             <img src="<?php the_post_thumbnail_url() ?>" alt="">
     </div>
-    <h2 class="project_name">Project Name:</h2>
 	<h1 class="yellow_underline"><?php the_title(); ?> </h1>
 </div>
 

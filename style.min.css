@@ -160,12 +160,12 @@ a img.aligncenter{display:block;margin-left:auto;margin-right:auto}
 .d-block{display:block}
 u{text-decoration:none;position:relative}
 u:before{content:"";display:inline-block;width:20%;position:absolute;left:.1rem;top:4rem;border-bottom:3px solid #fccb06}
-header.portfolio{height:450px;background:url("./assets/img/jay-wennington-2250-unsplash.jpg") no-repeat;background-size:cover}
-header.portfolio a{color:#fff}
-header .head{display:-ms-grid;display:grid;-ms-grid-columns:.5fr 1fr;grid-template-columns:.5fr 1fr;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-size:1.125rem;padding-top:30px;padding-right:0;padding-bottom:30px;padding-left:0}
+header .head{display:-ms-grid;display:grid;-ms-grid-columns:.5fr 1fr;grid-template-columns:.5fr 1fr;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-size:1.125rem;padding-top:20px;padding-right:0;padding-bottom:20px;padding-left:0}
 header .head li{text-align:right;position:relative}
 header .head li a{text-transform:uppercase;margin-left:45px}
 header .head .menu-item{-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}
+header .head .menu-item a{-webkit-transition:.2s all ease-in-out;transition:.2s all ease-in-out;border-bottom-width:0}
+header .head .menu-item:hover a{border-bottom:solid #fccb06;border-bottom-width:3px}
 header .head .menu-item .sub-menu{display:none;position:absolute;left:45px;top:30px;width:200px;background:#fff;-webkit-box-shadow:0 3px 3px rgba(0,0,0,0.2);box-shadow:0 3px 3px rgba(0,0,0,0.2);text-align:left;-webkit-transition:.5s all linear;transition:.5s all linear}
 header .head .menu-item .sub-menu .menu-item{text-align:left;padding:0 15px}
 header .head .menu-item .sub-menu .menu-item a{margin:0;padding:0}
@@ -184,17 +184,20 @@ header .head .menu-item .main-nav ul li:hover>.sub-menu{display:block}
 .position-relative{position:relative}
 .yellow_underline{text-decoration:none;position:relative;display:inline !important}
 .yellow_underline::before{content:"";display:inline-block;width:20%;position:absolute;left:.1rem;top:4rem;border-bottom:3px solid #fccb06}
+.h-75{height:75vh}
+.overflow-hidden{overflow:hidden}
 ul li{display:inline}
 .banner{width:100%;height:100vh}
-.banner:after{content:"";display:block;background:rgba(0,0,0,0.3);position:fixed;width:100%;height:100%;z-index:2;position:absolute}
+.banner:after{content:"";display:block;background:rgba(0,0,0,0.3);position:fixed;width:100%;height:75vh;z-index:2;position:absolute}
 .banner .image{z-index:0}
 .banner .image img{width:100vw;height:100vh;-webkit-filter:grayscale(100%);filter:grayscale(100%);-o-object-fit:cover;object-fit:cover}
 .banner button{margin-left:30px;margin-top:30px}
-.frontpage-quote{position:absolute;margin:auto;z-index:1;width:700px;height:400px;background:#fff;left:5rem;bottom:6rem;color:#000;z-index:3;padding-left:45px;padding-top:45px;-webkit-transition:.3s all linear;transition:.3s all linear;border-bottom:5px solid #fccb06}
+.frontpage-quote{position:absolute;margin:auto;z-index:1;width:45vw;height:40vh;background:#fff;left:5rem;bottom:8rem;color:#000;z-index:3;padding-left:45px;padding-top:45px;-webkit-transition:.3s all linear;transition:.3s all linear;border-bottom:5px solid #fccb06}
 .frontpage-quote:hover{border-bottom:5px solid #fccb06}
 .frontpage-quote h3{font-size:1.5625rem;font-weight:300}
-.frontpage-quote h1{font-size:2.8125rem;line-height:45px;font-weight:600;position:relative}
-.frontpage-quote .btn{position:absolute;top:19rem}
+.frontpage-quote h1{font-size:2.5rem;line-height:45px;font-weight:600;position:relative}
+.frontpage-quote .btn{position:absolute;bottom:2rem;padding:15px 25px;font-size:1.25rem}
+.frontpage-quote .btn:hover{color:#fff}
 .btn-white{color:#000;background:#fff}
 .btn{display:inline;padding:10px 15px}
 .btn h4{font-weight:400;font-size:1.25rem;display:inline}
@@ -210,7 +213,8 @@ ul li{display:inline}
 .item .overlay:hover img{opacity:.3}
 .item button{border:1px solid #fff;font-size:1.125rem;letter-spacing:2px;padding:10px 17px;font-weight:400;-webkit-transition:.3s all linear;transition:.3s all linear}
 .item button:hover{background-color:#fff;border:0;color:#000;-webkit-transition:.3s all linear;transition:.3s all linear}
-.item a{display:block;width:100%;height:100%}
+.item a{display:block;width:100%;height:100%;color:#fff}
+.item a:hover{color:#000}
 .item img{-webkit-transition:.8s all ease-out;transition:.8s all ease-out;width:100%;height:100%}
 .item:hover img{background:#000 !important;-webkit-transform:scale(1.04);transform:scale(1.04)}
 .item:hover .caption{position:absolute;margin:0;margin:0 auto;color:#fff;text-align:center;width:100%;top:25%;opacity:1;-webkit-transition:.3s all ease-out;transition:.3s all ease-out}
@@ -290,15 +294,13 @@ h1{margin:0}
 .contact-area .contact-area-lt .contact_area_info h2{font-weight:400;font-size:1.25rem;line-height:20px;margin-top:15px;margin-bottom:15px;color:#666}
 .contact-area .contact-area-lt .contact_area_info h3{font-weight:400;font-size:1.5625rem;line-height:25px;margin-bottom:15px;color:#666}
 .contact-area .contact-area-lt .contact_area_info h4{font-weight:400;font-size:1.25rem;color:#666}
-.contact-area .contact-area-rt{padding:50px}
-.contact-area .contact-area-rt input{display:block;border:2px solid #fff;border-radius:20px;margin-bottom:20px;padding-left:15px;font-size:.875rem;color:#fff;height:35px;width:300px}
-.contact-area .contact-area-rt ::-webkit-input-placeholder{color:#fff}
-.contact-area .contact-area-rt ::-moz-placeholder{color:#fff}
-.contact-area .contact-area-rt :-ms-input-placeholder{color:#fff}
-.contact-area .contact-area-rt ::-ms-input-placeholder{color:#fff}
-.contact-area .contact-area-rt ::placeholder{color:#fff}
-.contact-area .contact-area-rt textarea{border:2px solid #fff;width:300px;border-radius:20px;padding-top:15px;padding-left:15px;margin-bottom:20px;font-size:.875rem}
-.contact-area .contact-area-rt button{background:none !important}
+.contact-area .contact-area-rt{padding:50px;height:100%}
+.contact-area .contact-area-rt ::-webkit-input-placeholder{color:#000}
+.contact-area .contact-area-rt ::-moz-placeholder{color:#000}
+.contact-area .contact-area-rt :-ms-input-placeholder{color:#000}
+.contact-area .contact-area-rt ::-ms-input-placeholder{color:#000}
+.contact-area .contact-area-rt ::placeholder{color:#000}
+.contact-area .contact-area-rt .wpforms-submit{color:#fff;padding:10px 20px}
 .contact_services .box:hover i{color:#fccb06}
 .contact_services .contact-us-service{width:250px;padding:40px;-webkit-box-shadow:20px 20px 20px rgba(0,0,0,0.04);box-shadow:20px 20px 20px rgba(0,0,0,0.04);border-bottom:2px solid #000;padding:50px;background:#fff;-webkit-transition:all .3s ease-out;transition:all .3s ease-out}
 .contact_services .contact-us-service:hover{border-bottom:2px solid #fccb06}
@@ -307,7 +309,7 @@ h1{margin:0}
 .services:after{content:"";display:block;background:rgba(0,0,0,0.5);position:fixed;width:100%;height:100%;z-index:2;position:absolute}
 .services .title{position:relative;z-index:3;color:#fff;padding-bottom:50px}
 .services .services-cards{position:relative;z-index:4}
-.services .services-cards .services_box{display:-ms-grid;display:grid;grid-template-columns:repeat(auto-fit,minmax(440px,1fr));background:#fff}
+.services .services-cards .services_box{display:-ms-grid;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));background:#fff}
 .services .services-cards .services_box img{-o-object-fit:cover;object-fit:cover;height:100%;padding:40px}
 .services .services-cards .services_box .services_box_content{text-align:left;background:#fff;padding:50px}
 .services .services-cards .services_box .services_box_content h3{font-size:2.1875rem;font-weight:600;color:#000}
@@ -328,7 +330,7 @@ h1{margin:0}
 .inner_hero .img_holder:after{content:"";display:block;position:absolute;width:100%;height:100%;top:0;left:0;background-color:black;opacity:.7}
 .inner_hero .img_holder img{-o-object-fit:cover;object-fit:cover;width:100%;height:100%}
 .inner_hero h1{position:absolute;color:#fff;font-size:3.125rem;font-weight:400}
-.project_name{position:absolute;top:38%;font-size:1.5625rem;color:#fff;font-weight:300;font-style:italic}
+.project_name{position:absolute;top:30%;font-size:1.5625rem;color:#fff;font-weight:300;font-style:italic}
 .content_info{color:#666;padding:10px}
 .content_info .author{float:right;text-transform:uppercase}
 .content_info h4{display:inline;font-size:1.25rem;font-weight:600}
@@ -357,4 +359,36 @@ footer .footer-grid .cta .footer_contact_follow p{font-size:.9375rem;font-weight
 }@media(min-width:768px){.wp-caption .wp-caption-text,.gallery-caption{font:300 1.9rem/1.7 sans-serif}
 }@media(min-width:1024px){.wp-caption .wp-caption-text,.gallery-caption{font:300 2rem/3.1rem sans-serif}
 }@media(min-width:1280px){.wp-caption .wp-caption-text,.gallery-caption{font:300 2rem/3.1rem sans-serif}
+}@media screen and (max-width:600px){.item{width:100%}
+.grid-2{-ms-grid-columns:1fr;grid-template-columns:1fr;-ms-grid-rows:1fr .5fr;grid-template-rows:1fr .5fr;justify-items:center}
+.grid-3{-ms-grid-rows:1fr 1fr 1fr;grid-template-rows:1fr 1fr 1fr;-ms-grid-columns:1fr;grid-template-columns:1fr;grid-gap:40px}
+.grid-4{-ms-grid-columns:1fr;grid-template-columns:1fr;-ms-grid-rows:1fr 1fr 1fr 1fr;grid-template-rows:1fr 1fr 1fr 1fr}
+.grid-col-2{-ms-grid-columns:1fr;grid-template-columns:1fr;-ms-grid-rows:1fr 1fr;grid-template-rows:1fr 1fr}
+.grid-col-4{-ms-grid-columns:1fr;grid-template-columns:1fr;-ms-grid-rows:1fr 1fr 1fr 1fr;grid-template-rows:1fr 1fr 1fr 1fr}
+.about_me .grid-col-2{-ms-grid-columns:1fr;grid-template-columns:1fr}
+.footer-grid{-ms-grid-columns:1fr !important;grid-template-columns:1fr !important}
+.frontpage-quote{left:0;width:100vw}
+.frontpage-quote h3{font-size:1rem}
+.frontpage-quote h1{font-size:1.25rem;line-height:20px}
+.frontpage-quote .btn{bottom:5rem}
+.cta_infograph .grid-2{-ms-grid-rows:1fr;grid-template-rows:1fr}
+.cta_infograph .info_seo .info_seo_graph{width:60%}
+.cta_infograph .info_seo .title h2{letter-spacing:0;font-size:1.875rem}
+.cta_infograph .image{display:none !important}
+.head_title blockquote h3{font-size:1rem}
+.about_me{padding-bottom:50px}
+.about_me img{max-width:100%;height:100%;display:none}
+.about_me .content_right{width:90% !important}
+.about_me .grid-col-2{justify-items:baseline;grid-gap:0;-ms-grid-rows:1fr;grid-template-rows:1fr}
+.blog .box{width:auto}
+.jumbotron .jumbotron-title{font-size:1.5625rem}
+.jumbotron .jumbotron-content{font-size:1.25rem;text-align:justify}
+.services_box{border-bottom:2px solid #666}
+.services_box img{display:none}
+.contact_area_info{width:100% !important}
+.contact_services .grid-col-4{grid-gap:20px}
+footer .description{width:100% !important;padding-bottom:50px !important}
+footer .tech_used{display:none !important}
+.cta .footer_contact_follow{margin:0 !important}
+.cta .grid-2{justify-items:baseline}
 }

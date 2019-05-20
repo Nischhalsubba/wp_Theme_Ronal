@@ -1,0 +1,175 @@
+@media screen and (max-width: 600px) {
+    .item{
+        width: 100%;
+    }
+
+
+	//Grids
+	.grid-2 {
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr .5fr;
+		justify-items: center;
+	}
+
+	.grid-3 {
+		grid-template-rows: 1fr 1fr 1fr;
+		grid-template-columns: 1fr;
+		grid-gap: 40px;
+	}
+
+	.grid-4 {
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr 1fr 1fr 1fr;
+    }
+    
+    .grid-col-2{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+    .grid-col-4{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+    }
+
+	.about_me .grid-col-2 {
+		grid-template-columns: 1fr;
+		// grid-template-rows: 1fr 1fr;
+	}
+
+	.footer-grid {
+		grid-template-columns: 1fr !important;
+		// grid-template-rows: 1fr 1fr;
+	}
+
+
+	//frontpage
+	.frontpage-quote {
+		left: 0rem;
+		width: 100vw;
+
+		h3 {
+			@include font-size(16);
+		}
+
+		h1 {
+			@include font-size(20);
+			line-height: 20px;
+		}
+
+		.btn {
+			bottom: 5rem;
+		}
+	}
+
+	.cta_infograph {
+        .grid-2{
+            grid-template-rows: 1fr;
+        }
+		.info_seo {
+            .info_seo_graph {
+                width: 60%;
+            }
+			.title {
+				h2 {
+					letter-spacing: 0;
+					@include font-size(30);
+				}
+			}
+		}
+
+		.image {
+			display: none !important;
+		}
+	}
+
+	// Head Title
+	.head_title {
+		blockquote {
+			h3 {
+				@include font-size(16);
+			}
+		}
+	}
+
+	//About me
+	.about_me {
+		padding-bottom: 50px;
+
+		img {
+			max-width: 100%;
+			height: 100%;
+			display: none;
+		}
+
+		.content_right {
+			width: 90% !important;
+		}
+
+		.grid-col-2 {
+			justify-items: baseline;
+            grid-gap: 0;
+            grid-template-rows: 1fr;
+		}
+	}
+
+	// Blog
+	.blog {
+		.box {
+			width: auto;
+		}
+	}
+
+	// jumbotron
+	.jumbotron {
+		.jumbotron-title {
+			@include font-size(25);
+		}
+
+		.jumbotron-content {
+			@include font-size(20);
+			text-align: justify;
+		}
+	}
+
+	// Services
+	.services_box {
+		border-bottom: 2px solid $text-light-grey;
+
+		img {
+			display: none;
+		}
+    }
+    
+    // contact page
+    .contact_area_info{
+        width: 100% !important;
+    }
+    .contact_services {
+        .grid-col-4{
+            grid-gap: 20px;
+        }
+    }
+
+	//Footer
+	footer {
+		.description {
+            width: 100% !important;
+			padding-bottom: 50px !important;
+		}
+
+		.tech_used {
+			display: none !important;
+		}
+	}
+
+	.cta {
+		.footer_contact_follow {
+			margin: 0 !important;
+		}
+
+		.grid-2 {
+			justify-items: baseline;
+		}
+	}
+
+}

@@ -49,7 +49,9 @@ get_header(); ?>
 				<div class="caption">
 					<i><?php echo wp_filter_nohtml_kses(get_the_excerpt());?></i>
 					<h4><?php the_title();?></h4>
-					<a href="<?php the_permalink(); ?>" class="btn">view project</a>
+					<button>
+					<a href="<?php the_permalink(); ?>">view project</a>
+					</button>
 				</div>
 			</div>
 

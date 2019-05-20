@@ -63,7 +63,7 @@ get_header(); ?>
 				</div>
 
 				<div class="box_title mt-25">
-					<?php the_title();?>
+				<a href="<?php the_permalink(); ?>"><?php the_title();?></a>
 				</div>
 			</div>
 			<?php		

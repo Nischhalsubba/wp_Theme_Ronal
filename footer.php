@@ -15,10 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 wp_footer(); ?>
 
-<?php
-    // Start the loop.
-	while ( have_posts() ) : the_post();
-?>
+
 
 <footer>
 	<div class="container footer-grid">
@@ -105,10 +102,6 @@ wp_footer(); ?>
 	<!-- container footer-grid -->
 </footer>
 <!-- footer -->
-
-<?php
-endwhile;
-?>
 
 </body>
 

@@ -14,6 +14,7 @@ get_header(); ?>
 <div class="container">
 <h3>I am index</h3>
 
+
 <?php while(have_posts()) : the_post(); ?>
 
 	title: <?php the_title(); ?><br />
@@ -23,6 +24,8 @@ get_header(); ?>
 	link: <a href="<?php the_permalink(); ?>">link</a><br />
 	<hr />
 
+
 <?php endwhile; ?>
 </div>
+
 <?php get_footer(); ?>

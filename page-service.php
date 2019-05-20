@@ -54,7 +54,7 @@ get_header(); ?>
 						?>
 						<?php echo $trimmed; ?>	
 					</p>
-					<a href="#" class="btn btn-dark m-l-none d-block mt-60">Learn more</a>	
+					<a href="<?php the_permalink(); ?>" class="btn btn-dark m-l-none d-block mt-60">Learn more</a>	
 				</div>
 
 				<?php if(!$show_on_left){?>

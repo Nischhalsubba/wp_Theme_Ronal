@@ -20,8 +20,8 @@ get_header(); ?>
 	while ( have_posts() ) : the_post();
 ?>
 
-<div class="bg-black">
-	<div class="position-relative">
+<div class="bg-black h-75 overflow-hidden">
+	<div class="">
 		<div class="frontpage-quote container">
 			<h3>Creative SEO Specialist</h3>
 			<blockquote class="mt-25">
@@ -29,7 +29,7 @@ get_header(); ?>
 					<?php echo carbon_get_post_meta(get_the_ID(),'homepage_banner_title'); ?>
 				</h1>
 			</blockquote>
-			<a href="<?php echo carbon_get_post_meta(get_the_ID(),'homepage_banner_link'); ?>" class="btn btn-yellow">
+			<a href="<?php echo carbon_get_post_meta(get_the_ID(),'homepage_banner_link'); ?>" class="btn btn-yellow front">
 				GET STARTED
 			</a>
 		</div>
@@ -74,7 +74,7 @@ get_header(); ?>
 					<div class="caption">
 						<i><?php echo wp_filter_nohtml_kses(get_the_excerpt());?></i>
 						<h4><?php the_title();?></h4>
-						<button>view project</button>
+						<button> <a href="<?php the_permalink(); ?>">view project</a></button>
 					</div>
 				</div>
 			</div>

@@ -1,19 +1,11 @@
-header.portfolio {
-	height: 450px;
-	background: url('./assets/img/jay-wennington-2250-unsplash.jpg') no-repeat;
-	background-size: cover;
 
-	a{
-		color: $color-primary;
-	}
-}
 header{
 	.head {
 		display: grid;
 		grid-template-columns: 0.5fr 1fr;
 		align-items: center;
 		@include font-size(18);
-		@include padding(30px, 0px, 30px, 0px);
+		@include padding(20px, 0px, 20px, 0px);
 	
 		li {
 			text-align: right;
@@ -27,6 +19,17 @@ header{
 	
 		.menu-item {
 			transform: translate(-50%, -50%);
+			
+
+			a{
+				transition: 0.2s all ease-in-out;
+				border-bottom-width: 0px;
+			}
+
+			&:hover a{
+				border-bottom: solid $color-accent;
+				border-bottom-width: 3px;
+			}
 			
 			.sub-menu {
 				display: none;

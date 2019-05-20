@@ -158,9 +158,9 @@ function create_services(){
 	array(
 		'labels' => array(
 			'name'=>__('Services'),
-			'singular_name' => ('service'),
+			'singular_name' => __('service'),
 			'add_new' =>  __('Create New Service'),
-		   'add_new_item' => ('Add new Service')
+		   'add_new_item' => __('Add new Service')
 		),
 		'public' => true,
 		'rewrite' => array('slug' => 'services'),
