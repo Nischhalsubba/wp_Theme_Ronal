@@ -1,7 +1,12 @@
 {
-  "name": "wpgulptheme",
+  "name": "ronal-chhetri-wordpress-theme",
   "version": "1.0.0",
-  "author": "Ahmad Awais (https://twitter.com/MrAhmadAwais/)",
+  "private": true,
+  "description": "A custom WordPress portfolio theme for Ronal Chhetri with Sass, Gulp, RTL, translation, image optimization, and JavaScript build workflows.",
+  "author": "Nischhal Raj Subba",
+  "contributors": [
+    "Ahmad Awais (original WPGulp workflow)"
+  ],
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.0.0",
