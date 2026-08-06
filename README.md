@@ -6,7 +6,7 @@
 
 **Branch-aware technical guide for [`master`](https://github.com/Nischhalsubba/wp_Theme_Ronal/tree/master)**
 
-<p><img alt="branch: master" src="https://img.shields.io/static/v1?label=&message=branch%3A%20master&color=5965F2&style=flat-square"> <img alt="WordPress" src="https://img.shields.io/static/v1?label=&message=WordPress&color=24292F&style=flat-square"> <img alt="Sass" src="https://img.shields.io/static/v1?label=&message=Sass&color=24292F&style=flat-square"> <img alt="PHP" src="https://img.shields.io/static/v1?label=&message=PHP&color=24292F&style=flat-square"> <img alt="JavaScript" src="https://img.shields.io/static/v1?label=&message=JavaScript&color=24292F&style=flat-square"> <img alt="CSS" src="https://img.shields.io/static/v1?label=&message=CSS&color=24292F&style=flat-square"> <img alt="docs: branch-aware" src="https://img.shields.io/static/v1?label=&message=docs%3A%20branch-aware&color=8250DF&style=flat-square"></p>
+<p><img alt="branch: master" src="https://img.shields.io/static/v1?label=&message=branch%3A%20master&color=5965F2&style=flat-square"> <img alt="WordPress" src="https://img.shields.io/static/v1?label=&message=WordPress&color=24292F&style=flat-square"> <img alt="Sass" src="https://img.shields.io/static/v1?label=&message=Sass&color=24292F&style=flat-square"> <img alt="PHP" src="https://img.shields.io/static/v1?label=&message=PHP&color=24292F&style=flat-square"> <img alt="JavaScript" src="https://img.shields.io/static/v1?label=&message=JavaScript&color=24292F&style=flat-square"> <img alt="CSS" src="https://img.shields.io/static/v1?label=&message=CSS&color=24292F&style=flat-square"> <img alt="HTML" src="https://img.shields.io/static/v1?label=&message=HTML&color=24292F&style=flat-square"> <img alt="docs: branch-aware" src="https://img.shields.io/static/v1?label=&message=docs%3A%20branch-aware&color=8250DF&style=flat-square"></p>
 
 <p>
   <a href="https://github.com/Nischhalsubba/wp_Theme_Ronal/tree/master"><strong>Browse source</strong></a> ·
@@ -25,10 +25,10 @@
 |---|---|
 | Purpose | A custom WordPress portfolio theme for Ronal Chhetri with Sass, Gulp, RTL, translation, image optimization, and JavaScript build workflows. |
 | Branch role | Default branch |
-| Stack | WordPress, Sass, PHP, JavaScript, CSS |
+| Stack | WordPress, Sass, PHP, JavaScript, CSS, HTML |
 | Manifests | package.json |
 | Prerequisites | Node.js |
-| Delivery | GitHub Actions |
+| Delivery | netlify.toml, GitHub Actions |
 | License | No license file detected |
 
 ## Branch scope
@@ -58,22 +58,22 @@ flowchart TD
     ROOT --> P0[".github/"]
     ROOT --> P1["assets/"]
     ROOT --> P2["languages/"]
-    ROOT --> P3[".editorconfig"]
-    ROOT --> P4[".eslintignore"]
-    ROOT --> P5[".eslintrc.js"]
-    ROOT --> P6[".gitignore"]
-    ROOT --> P7["footer.php"]
-    ROOT --> P8["front-page.php"]
-    ROOT --> P9["front-page1.php"]
-    ROOT --> P10["functions.php"]
-    ROOT --> P11["gulpfile.babel.js"]
-    ROOT --> P12["header.php"]
-    ROOT --> P13["home.php"]
-    ROOT --> P14["index.php"]
-    ROOT --> P15["package-lock.json"]
-    ROOT --> P16["package.json"]
-    ROOT --> P17["page-contact-us.php"]
-    ROOT --> MORE["+ 10 more top-level entries"]
+    ROOT --> P3["netlify-site/"]
+    ROOT --> P4[".editorconfig"]
+    ROOT --> P5[".eslintignore"]
+    ROOT --> P6[".eslintrc.js"]
+    ROOT --> P7[".gitignore"]
+    ROOT --> P8["footer.php"]
+    ROOT --> P9["front-page.php"]
+    ROOT --> P10["front-page1.php"]
+    ROOT --> P11["functions.php"]
+    ROOT --> P12["gulpfile.babel.js"]
+    ROOT --> P13["header.php"]
+    ROOT --> P14["home.php"]
+    ROOT --> P15["index.php"]
+    ROOT --> P16["netlify.toml"]
+    ROOT --> P17["package-lock.json"]
+    ROOT --> MORE["+ 12 more top-level entries"]
 ```
 
 | Responsibility | Detected source paths |
@@ -95,7 +95,7 @@ flowchart TD
 flowchart LR
     USER["User / contributor"]
     USER --> A0["Delivery: .github"]
-    A0 --> DELIVERY["Delivery: GitHub Actions"]
+    A0 --> DELIVERY["Delivery: netlify.toml, GitHub Actions"]
 ```
 
 
