@@ -154,6 +154,7 @@ flowchart LR
 ### Automation detected
 
 - [`.github/workflows/apply-interactive-readme.yml`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/master/.github/workflows/apply-interactive-readme.yml)
+- [`.github/workflows/deploy-netlify.yml`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/master/.github/workflows/deploy-netlify.yml)
 
 ## Contribution flow
 
