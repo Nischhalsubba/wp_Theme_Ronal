@@ -21,47 +21,54 @@ if [ -s portrait/ronal-chhetri.png ]; then
   cp portrait/ronal-chhetri.png dist/legacy-theme/images/profile_pic.png
 fi
 
-# The original hero composition allocated only a shallow crop for the portrait.
-# Promote the image into the full arch card at runtime so Ronal's complete
-# upper-body portrait remains visible at desktop and mobile sizes.
+# Keep the original hero card and overlays intact. The source bundle crops the
+# portrait inside a shallow wrapper, so clone the same image into a full-card
+# presentation layer while leaving the original layout element in place.
 cat >> dist/assets/css/site.css <<'CSS'
 
-/* Full portrait composition */
-.ronal-full-portrait-host {
+/* Full portrait inside the original hero card */
+.ronal-portrait-host {
   position: relative !important;
-  overflow: hidden !important;
   isolation: isolate;
+  overflow: hidden !important;
 }
 
-.ronal-full-portrait-host > .ronal-full-portrait {
+.ronal-portrait-layer {
   position: absolute !important;
+  inset: 0 !important;
   z-index: 1 !important;
-  left: 48% !important;
-  right: auto !important;
-  top: auto !important;
-  bottom: 0 !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+.ronal-portrait-layer .ronal-full-portrait {
   display: block !important;
-  width: min(122%, 34rem) !important;
+  flex: none !important;
+  width: min(118%, 34rem) !important;
   height: auto !important;
   max-width: none !important;
   max-height: 96% !important;
+  margin: 0 !important;
   object-fit: contain !important;
   object-position: center bottom !important;
-  transform: translateX(-50%) !important;
+  transform: none !important;
   clip-path: none !important;
   opacity: 1 !important;
+  visibility: visible !important;
   filter: none !important;
-  pointer-events: none;
 }
 
-.ronal-full-portrait-host > :not(.ronal-full-portrait) {
+.ronal-portrait-host > :not(.ronal-portrait-layer) {
+  position: relative;
   z-index: 2;
 }
 
 @media (max-width: 48rem) {
-  .ronal-full-portrait-host > .ronal-full-portrait {
-    left: 50% !important;
-    width: min(116%, 29rem) !important;
+  .ronal-portrait-layer .ronal-full-portrait {
+    width: min(112%, 29rem) !important;
     max-height: 94% !important;
   }
 }
@@ -69,17 +76,21 @@ CSS
 
 cat >> dist/assets/js/site.js <<'JS'
 
-/* Move Ronal's portrait out of the old head-only crop and into the full hero arch. */
+/* Preserve the old hero design while replacing its shallow head crop. */
 (() => {
-  const placeFullPortrait = () => {
-    const portrait = Array.from(document.images).find((image) =>
-      /(?:^|\/)profile_pic\.png(?:\?|$)/.test(image.currentSrc || image.src)
-    );
+  const installFullPortrait = () => {
+    const source = Array.from(document.images).find((image) => {
+      const src = image.getAttribute('src') || image.currentSrc || image.src || '';
+      return /(?:^|\/)profile_pic\.png(?:\?|$)/.test(src);
+    });
 
-    if (!portrait || portrait.dataset.fullPortraitApplied === 'true') return;
+    if (!source || source.dataset.fullPortraitSource === 'true') return;
+
+    const sourceFrame = source.parentElement;
+    if (!sourceFrame) return;
 
     const ancestors = [];
-    let node = portrait.parentElement;
+    let node = sourceFrame.parentElement;
     while (node && node !== document.body) {
       ancestors.push(node);
       node = node.parentElement;
@@ -95,32 +106,37 @@ cat >> dist/assets/js/site.js <<'JS'
       return rect.width >= 240 && rect.height >= 340 && rect.height > rect.width && radius >= 32;
     }) || ancestors.find((element) => {
       const rect = element.getBoundingClientRect();
-      return rect.width >= 240 && rect.height >= 340;
+      return rect.width >= 240 && rect.height >= 340 && rect.height > rect.width;
     });
 
     if (!host) return;
 
-    const previousParent = portrait.parentElement;
-    portrait.dataset.fullPortraitApplied = 'true';
-    portrait.classList.add('ronal-full-portrait');
-    host.classList.add('ronal-full-portrait-host');
-    host.prepend(portrait);
+    source.dataset.fullPortraitSource = 'true';
+    source.style.visibility = 'hidden';
 
-    Array.from(host.children).forEach((child) => {
-      if (child === portrait) return;
-      if (getComputedStyle(child).position === 'static') child.style.position = 'relative';
-      child.style.zIndex = '2';
-    });
+    const layer = document.createElement('div');
+    layer.className = 'ronal-portrait-layer';
+    layer.setAttribute('aria-hidden', 'true');
 
-    if (previousParent && previousParent !== host && previousParent.children.length === 0) {
-      previousParent.hidden = true;
-    }
+    const portrait = source.cloneNode(true);
+    portrait.removeAttribute('id');
+    portrait.removeAttribute('style');
+    portrait.removeAttribute('width');
+    portrait.removeAttribute('height');
+    portrait.removeAttribute('loading');
+    portrait.className = 'ronal-full-portrait';
+    portrait.alt = '';
+    portrait.dataset.fullPortraitClone = 'true';
+
+    layer.appendChild(portrait);
+    host.classList.add('ronal-portrait-host');
+    host.appendChild(layer);
   };
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', placeFullPortrait, { once: true });
+    document.addEventListener('DOMContentLoaded', installFullPortrait, { once: true });
   } else {
-    placeFullPortrait();
+    installFullPortrait();
   }
 })();
 JS
