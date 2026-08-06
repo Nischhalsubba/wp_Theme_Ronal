@@ -7,12 +7,13 @@ Generator: `aed303eed8a536f2dda075c8be583693325aac37`
 | Branch | Result | Detail |
 |---|---|---|
 | `agent/add-ronal-portrait` | unchanged | README already matched the standard |
+| `agent/fix-hero-portrait-layer` | updated | Branch-specific README committed |
 | `agent/netlify-deploy-diagnostic` | unchanged | README already matched the standard |
 | `agent/restore-hero-portrait` | updated | Branch-specific README committed |
 | `agent/ronal-portfolio-redesign-v2` | unchanged | README already matched the standard |
 | `agent/ronal-seo-portfolio` | unchanged | README already matched the standard |
 | `agent/show-full-portrait` | unchanged | README already matched the standard |
-| `agent/version-portrait-assets` | updated | Branch-specific README committed |
+| `agent/version-portrait-assets` | unchanged | README already matched the standard |
 | `dependabot/npm_and_yarn/acorn-5.7.4` | unchanged | README already matched the standard |
 | `dependabot/npm_and_yarn/ajv-6.12.6` | unchanged | README already matched the standard |
 | `dependabot/npm_and_yarn/browserslist-4.16.6` | unchanged | README already matched the standard |
