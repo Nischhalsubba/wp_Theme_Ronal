@@ -7,8 +7,9 @@ Generator: `aed303eed8a536f2dda075c8be583693325aac37`
 | Branch | Result | Detail |
 |---|---|---|
 | `agent/add-ronal-portrait` | unchanged | README already matched the standard |
-| `agent/embed-portrait-directly` | updated | Branch-specific README committed |
+| `agent/embed-portrait-directly` | unchanged | README already matched the standard |
 | `agent/fix-hero-portrait-layer` | unchanged | README already matched the standard |
+| `agent/launch-readiness-mobile-seo` | updated | Branch-specific README committed |
 | `agent/netlify-deploy-diagnostic` | unchanged | README already matched the standard |
 | `agent/restore-hero-portrait` | unchanged | README already matched the standard |
 | `agent/ronal-portfolio-redesign-v2` | unchanged | README already matched the standard |
