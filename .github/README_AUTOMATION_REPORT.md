@@ -6,6 +6,7 @@ Generator: `aed303eed8a536f2dda075c8be583693325aac37`
 
 | Branch | Result | Detail |
 |---|---|---|
+| `agent/ronal-seo-portfolio` | updated | Branch-specific README committed |
 | `dependabot/npm_and_yarn/acorn-5.7.4` | unchanged | README already matched the standard |
 | `dependabot/npm_and_yarn/ajv-6.12.6` | unchanged | README already matched the standard |
 | `dependabot/npm_and_yarn/browserslist-4.16.6` | unchanged | README already matched the standard |
