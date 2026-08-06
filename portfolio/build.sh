@@ -21,15 +21,16 @@ if [ -s portrait/ronal-chhetri.png ]; then
   cp portrait/ronal-chhetri.png dist/legacy-theme/images/profile_pic.png
 fi
 
-# Reconstruct the exact portrait supplied for the hero from text-safe chunks.
+# Reconstruct the locally preserved portrait as a fallback if the requested
+# external Imgur asset is temporarily unavailable.
 if ls portrait/ronal-chhetri-hero.part-*.b64 >/dev/null 2>&1; then
   cat portrait/ronal-chhetri-hero.part-*.b64 \
     | base64 -d \
     > dist/legacy-theme/images/ronal-chhetri-hero.webp
 fi
 
-# Insert the portrait into the generated HTML itself. Runtime DOM guessing caused
-# the blank-card regressions, so the hero now owns a real image element.
+# Insert the requested Imgur portrait into the generated HTML itself. The image
+# is a direct child of the hero frame and does not depend on runtime DOM search.
 node <<'NODE'
 const fs = require('fs');
 const file = 'dist/index.html';
@@ -55,7 +56,7 @@ if (!html.includes('ronal-hero-portrait')) {
     upgradedTag = openingTag.replace(classPattern, `class=${quote}${updatedClasses}${quote}`);
   }
 
-  const portrait = '<img class="ronal-hero-portrait" src="/legacy-theme/images/ronal-chhetri-hero.webp?v=__RONAL_ASSET_VERSION__" alt="Ronal Chhetri" width="512" height="512" fetchpriority="high" decoding="async">';
+  const portrait = `<img class="ronal-hero-portrait" src="https://i.imgur.com/5N1j1Ie.png" alt="Ronal Chhetri" width="1024" height="1024" loading="eager" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='/legacy-theme/images/ronal-chhetri-hero.webp?v=__RONAL_ASSET_VERSION__'">`;
   html = html.replace(openingTag, `${upgradedTag}${portrait}`);
   fs.writeFileSync(file, html);
 }
@@ -63,7 +64,7 @@ NODE
 
 cat >> dist/assets/css/site.css <<'CSS'
 
-/* Exact uploaded portrait embedded directly in the original hero frame */
+/* Requested Imgur portrait embedded directly in the original hero frame */
 .portrait-frame.ronal-portrait-card {
   position: relative !important;
   isolation: isolate !important;
@@ -131,7 +132,7 @@ for page in dist/*.html; do
     "$page"
 done
 
-# Fail early when a core page or asset is missing.
+# Fail early when a core page, asset, or requested hero URL is missing.
 test -s dist/index.html
 test -s dist/resume.html
 test -s dist/assets/css/site.css
@@ -139,5 +140,6 @@ test -s dist/assets/js/site.js
 test -s dist/legacy-theme/images/ronal-chhetri-hero.webp
 grep -q 'class="ronal-hero-portrait"' dist/index.html
 grep -q 'portrait-frame ronal-portrait-card' dist/index.html
+grep -q 'src="https://i.imgur.com/5N1j1Ie.png"' dist/index.html
 
 printf '%s\n' 'Ronal Chhetri portfolio built in portfolio/dist/'
