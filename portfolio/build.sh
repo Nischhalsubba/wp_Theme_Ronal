@@ -40,9 +40,7 @@ if (!html.includes('ronal-hero-portrait')) {
   const framePattern = /<([a-z][\w:-]*)\b([^>]*\bclass\s*=\s*(["'])([^"']*\bportrait-frame\b[^"']*)\3[^>]*)>/i;
   const match = html.match(framePattern);
 
-  if (!match) {
-    throw new Error('Could not find the portrait-frame element in index.html');
-  }
+  if (!match) throw new Error('Could not find the portrait-frame element in index.html');
 
   const openingTag = match[0];
   const quote = match[3];
@@ -56,11 +54,14 @@ if (!html.includes('ronal-hero-portrait')) {
     upgradedTag = openingTag.replace(classPattern, `class=${quote}${updatedClasses}${quote}`);
   }
 
-  const portrait = `<img class="ronal-hero-portrait" src="https://i.imgur.com/5N1j1Ie.png" alt="Ronal Chhetri" width="1024" height="1024" loading="eager" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='/legacy-theme/images/ronal-chhetri-hero.webp?v=__RONAL_ASSET_VERSION__'">`;
+  const portrait = `<img class="ronal-hero-portrait" src="https://i.imgur.com/5N1j1Ie.png" alt="Ronal Chhetri, Senior SEO Specialist and Analyst" width="1024" height="1024" loading="eager" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='/legacy-theme/images/ronal-chhetri-hero.webp?v=__RONAL_ASSET_VERSION__'">`;
   html = html.replace(openingTag, `${upgradedTag}${portrait}`);
   fs.writeFileSync(file, html);
 }
 NODE
+
+# Apply launch-ready navigation, on-page content, metadata, schema and crawl files.
+node launch-enhancements.js
 
 cat >> dist/assets/css/site.css <<'CSS'
 
@@ -72,9 +73,7 @@ cat >> dist/assets/css/site.css <<'CSS'
 }
 
 .portrait-frame.ronal-portrait-card::before,
-.portrait-frame.ronal-portrait-card::after {
-  z-index: 1 !important;
-}
+.portrait-frame.ronal-portrait-card::after { z-index: 1 !important; }
 
 .portrait-frame.ronal-portrait-card > .ronal-hero-portrait {
   position: absolute !important;
@@ -101,11 +100,8 @@ cat >> dist/assets/css/site.css <<'CSS'
   visibility: hidden !important;
 }
 
-.portrait-frame.ronal-portrait-card > :not(.ronal-hero-portrait) {
-  z-index: 3 !important;
-}
-
-.portrait-frame.ronal-portrait-card :is(h1, h2, h3, h4, h5, h6, p, span, small, strong) {
+.portrait-frame.ronal-portrait-card > :not(.ronal-hero-portrait) { z-index: 3 !important; }
+.portrait-frame.ronal-portrait-card :is(h1,h2,h3,h4,h5,h6,p,span,small,strong) {
   position: relative;
   z-index: 4 !important;
 }
@@ -120,7 +116,10 @@ cat >> dist/assets/css/site.css <<'CSS'
 }
 CSS
 
-# Version generated assets so browsers cannot reuse a previous hero layout.
+cat launch-enhancements.css >> dist/assets/css/site.css
+cat launch-navigation.js >> dist/assets/js/site.js
+
+# Version generated assets so browsers cannot reuse a previous layout or script.
 asset_version="${COMMIT_REF:-local}"
 asset_version=$(printf '%s' "$asset_version" | cut -c1-12)
 sed -i "s|__RONAL_ASSET_VERSION__|$asset_version|g" dist/index.html
@@ -132,14 +131,15 @@ for page in dist/*.html; do
     "$page"
 done
 
-# Fail early when a core page, asset, or requested hero URL is missing.
+# Fail early when a core page, asset, menu, or SEO requirement is missing.
 test -s dist/index.html
 test -s dist/resume.html
 test -s dist/assets/css/site.css
 test -s dist/assets/js/site.js
 test -s dist/legacy-theme/images/ronal-chhetri-hero.webp
-grep -q 'class="ronal-hero-portrait"' dist/index.html
-grep -q 'portrait-frame ronal-portrait-card' dist/index.html
-grep -q 'src="https://i.imgur.com/5N1j1Ie.png"' dist/index.html
+test -s dist/robots.txt
+test -s dist/sitemap.xml
+node --check dist/assets/js/site.js
+node launch-verify.js
 
-printf '%s\n' 'Ronal Chhetri portfolio built in portfolio/dist/'
+printf '%s\n' 'Ronal Chhetri launch build passed mobile navigation and SEO validation.'
