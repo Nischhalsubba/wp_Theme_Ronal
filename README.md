@@ -4,27 +4,27 @@
 
 # wp_Theme_Ronal
 
-**Branch-aware technical guide for [`master`](https://github.com/Nischhalsubba/wp_Theme_Ronal/tree/master)**
+**Branch-aware technical guide for [`agent/use-imgur-hero`](https://github.com/Nischhalsubba/wp_Theme_Ronal/tree/agent/use-imgur-hero)**
 
-<p><img alt="branch: master" src="https://img.shields.io/static/v1?label=&message=branch%3A%20master&color=5965F2&style=flat-square"> <img alt="WordPress" src="https://img.shields.io/static/v1?label=&message=WordPress&color=24292F&style=flat-square"> <img alt="Sass" src="https://img.shields.io/static/v1?label=&message=Sass&color=24292F&style=flat-square"> <img alt="PHP" src="https://img.shields.io/static/v1?label=&message=PHP&color=24292F&style=flat-square"> <img alt="JavaScript" src="https://img.shields.io/static/v1?label=&message=JavaScript&color=24292F&style=flat-square"> <img alt="CSS" src="https://img.shields.io/static/v1?label=&message=CSS&color=24292F&style=flat-square"> <img alt="HTML" src="https://img.shields.io/static/v1?label=&message=HTML&color=24292F&style=flat-square"> <img alt="docs: branch-aware" src="https://img.shields.io/static/v1?label=&message=docs%3A%20branch-aware&color=8250DF&style=flat-square"></p>
+<p><img alt="branch: agent/use-imgur-hero" src="https://img.shields.io/static/v1?label=&message=branch%3A%20agent%2Fuse-imgur-hero&color=5965F2&style=flat-square"> <img alt="WordPress" src="https://img.shields.io/static/v1?label=&message=WordPress&color=24292F&style=flat-square"> <img alt="Sass" src="https://img.shields.io/static/v1?label=&message=Sass&color=24292F&style=flat-square"> <img alt="PHP" src="https://img.shields.io/static/v1?label=&message=PHP&color=24292F&style=flat-square"> <img alt="JavaScript" src="https://img.shields.io/static/v1?label=&message=JavaScript&color=24292F&style=flat-square"> <img alt="CSS" src="https://img.shields.io/static/v1?label=&message=CSS&color=24292F&style=flat-square"> <img alt="HTML" src="https://img.shields.io/static/v1?label=&message=HTML&color=24292F&style=flat-square"> <img alt="docs: branch-aware" src="https://img.shields.io/static/v1?label=&message=docs%3A%20branch-aware&color=8250DF&style=flat-square"></p>
 
 <p>
-  <a href="https://github.com/Nischhalsubba/wp_Theme_Ronal/tree/master"><strong>Browse source</strong></a> ·
+  <a href="https://github.com/Nischhalsubba/wp_Theme_Ronal/tree/agent/use-imgur-hero"><strong>Browse source</strong></a> ·
   <a href="https://github.com/Nischhalsubba/wp_Theme_Ronal/issues"><strong>Issues</strong></a> ·
-  <a href="https://github.com/Nischhalsubba/wp_Theme_Ronal/codespaces/new?ref=master"><strong>Open in Codespaces</strong></a>
+  <a href="https://github.com/Nischhalsubba/wp_Theme_Ronal/codespaces/new?ref=agent%2Fuse-imgur-hero"><strong>Open in Codespaces</strong></a>
 </p>
 
 </div>
 
 > [!IMPORTANT]
-> This guide is generated from the files actually present on `master`. It links to detected source paths, preserves project-authored notes, and avoids claiming components that were not found.
+> This guide is generated from the files actually present on `agent/use-imgur-hero`. It links to detected source paths, preserves project-authored notes, and avoids claiming components that were not found.
 
 ## At a glance
 
 | Item | Detected value |
 |---|---|
 | Purpose | A custom WordPress portfolio theme for Ronal Chhetri with Sass, Gulp, RTL, translation, image optimization, and JavaScript build workflows. |
-| Branch role | Default branch |
+| Branch role | Compared with `master` |
 | Stack | WordPress, Sass, PHP, JavaScript, CSS, HTML |
 | Manifests | package.json |
 | Prerequisites | Node.js |
@@ -33,9 +33,9 @@
 
 ## Branch scope
 
-This is the repository's default branch.
+This branch differs from the default branch in the following detected paths:
 
-
+- [`portfolio/build.sh`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/use-imgur-hero/portfolio/build.sh)
 
 ## Quick start
 
@@ -54,7 +54,7 @@ npm run start
 
 ```mermaid
 flowchart TD
-    ROOT["wp_Theme_Ronal / master"]
+    ROOT["wp_Theme_Ronal / agent/use-imgur-hero"]
     ROOT --> P0[".github/"]
     ROOT --> P1[".portfolio-src/"]
     ROOT --> P2["assets/"]
@@ -78,7 +78,7 @@ flowchart TD
 
 | Responsibility | Detected source paths |
 |---|---|
-| Delivery | [`.github`](https://github.com/Nischhalsubba/wp_Theme_Ronal/tree/master/.github) |
+| Delivery | [`.github`](https://github.com/Nischhalsubba/wp_Theme_Ronal/tree/agent/use-imgur-hero/.github) |
 
 ## Website or application map
 
@@ -127,12 +127,12 @@ Review authentication, authorization, input validation, dependency updates, secr
 
 ### Observability
 
-- [`assets/img/google-analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/master/assets/img/google-analytics-logo.jpg)
-- [`assets/img/Squared_Data_and_Analytics_Logo_1_ (2).jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/master/assets/img/Squared_Data_and_Analytics_Logo_1_%20%282%29.jpg)
-- [`assets/img/Facebook-Analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/master/assets/img/Facebook-Analytics-logo.jpg)
-- [`assets/img/raw/google-analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/master/assets/img/raw/google-analytics-logo.jpg)
-- [`assets/img/raw/Squared_Data_and_Analytics_Logo_1_ (2).jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/master/assets/img/raw/Squared_Data_and_Analytics_Logo_1_%20%282%29.jpg)
-- [`assets/img/raw/Facebook-Analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/master/assets/img/raw/Facebook-Analytics-logo.jpg)
+- [`assets/img/google-analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/use-imgur-hero/assets/img/google-analytics-logo.jpg)
+- [`assets/img/Squared_Data_and_Analytics_Logo_1_ (2).jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/use-imgur-hero/assets/img/Squared_Data_and_Analytics_Logo_1_%20%282%29.jpg)
+- [`assets/img/Facebook-Analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/use-imgur-hero/assets/img/Facebook-Analytics-logo.jpg)
+- [`assets/img/raw/google-analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/use-imgur-hero/assets/img/raw/google-analytics-logo.jpg)
+- [`assets/img/raw/Squared_Data_and_Analytics_Logo_1_ (2).jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/use-imgur-hero/assets/img/raw/Squared_Data_and_Analytics_Logo_1_%20%282%29.jpg)
+- [`assets/img/raw/Facebook-Analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/use-imgur-hero/assets/img/raw/Facebook-Analytics-logo.jpg)
 
 Define useful logs, metrics, traces, alerts, and rollback signals for production-facing branches.
 
@@ -144,7 +144,7 @@ Define useful logs, metrics, traces, alerts, and rollback signals for production
 
 ```mermaid
 flowchart LR
-    CHANGE["Change on master"] --> CHECK["Tests and quality checks"]
+    CHANGE["Change on agent/use-imgur-hero"] --> CHECK["Tests and quality checks"]
     CHECK --> REVIEW["Review architecture and documentation impact"]
     REVIEW --> BUILD["Build or package"]
     BUILD --> DEPLOY["Deploy or release"]
@@ -153,8 +153,8 @@ flowchart LR
 
 ### Automation detected
 
-- [`.github/workflows/apply-interactive-readme.yml`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/master/.github/workflows/apply-interactive-readme.yml)
-- [`.github/workflows/deploy-netlify.yml`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/master/.github/workflows/deploy-netlify.yml)
+- [`.github/workflows/apply-interactive-readme.yml`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/use-imgur-hero/.github/workflows/apply-interactive-readme.yml)
+- [`.github/workflows/deploy-netlify.yml`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/use-imgur-hero/.github/workflows/deploy-netlify.yml)
 
 ## Contribution flow
 
@@ -179,7 +179,7 @@ flowchart LR
 | Topic | Source |
 |---|---|
 | Repository | [`Nischhalsubba/wp_Theme_Ronal`](https://github.com/Nischhalsubba/wp_Theme_Ronal) |
-| Branch | [`master`](https://github.com/Nischhalsubba/wp_Theme_Ronal/tree/master) |
+| Branch | [`agent/use-imgur-hero`](https://github.com/Nischhalsubba/wp_Theme_Ronal/tree/agent/use-imgur-hero) |
 | Ownership | No CODEOWNERS file detected |
 | Contributing | Use the contribution flow above |
 | Support | [Open or review issues](https://github.com/Nischhalsubba/wp_Theme_Ronal/issues) |
