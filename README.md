@@ -35,6 +35,7 @@
 
 This branch differs from the default branch in the following detected paths:
 
+- [`README.md`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/use-imgur-hero/README.md)
 - [`portfolio/build.sh`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/use-imgur-hero/portfolio/build.sh)
 
 ## Quick start
