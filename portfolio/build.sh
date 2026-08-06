@@ -125,6 +125,18 @@ cat >> dist/assets/js/site.js <<'JS'
 })();
 JS
 
+# Version generated assets with the Netlify commit SHA so browsers cannot reuse
+# an older immutable CSS, JavaScript, or portrait response after deployment.
+asset_version="${COMMIT_REF:-local}"
+asset_version=$(printf '%s' "$asset_version" | cut -c1-12)
+for page in dist/*.html; do
+  sed -i \
+    -e "s|site\.css|site.css?v=$asset_version|g" \
+    -e "s|site\.js|site.js?v=$asset_version|g" \
+    -e "s|profile_pic\.png|profile_pic.png?v=$asset_version|g" \
+    "$page"
+done
+
 # Fail early when a core page or asset is missing.
 test -s dist/index.html
 test -s dist/resume.html
