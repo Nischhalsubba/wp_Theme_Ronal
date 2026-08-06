@@ -9,13 +9,20 @@ on:
       - 'build.sh'
       - 'netlify.toml'
       - '.github/workflows/deploy-netlify.yml'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - '.github/workflows/deploy-netlify.yml'
+      - 'build.sh'
+      - '.portfolio-src/**'
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: netlify-production
+  group: netlify-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -46,19 +53,21 @@ jobs:
           token="${NETLIFY_AUTH_TOKEN_PRIMARY:-${NETLIFY_AUTH_TOKEN_FALLBACK:-}}"
           if [ -n "$token" ]; then
             echo "configured=true" >> "$GITHUB_OUTPUT"
+            echo 'A Netlify deployment credential is configured.'
           else
             echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo 'No Netlify deployment credential is configured.'
           fi
 
       - name: Deploy production site
-        if: steps.netlify.outputs.configured == 'true'
+        if: github.event_name != 'pull_request' && steps.netlify.outputs.configured == 'true'
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN || secrets.NETLIFY_TOKEN }}
           NETLIFY_SITE_ID: 951bb1d6-f957-468d-978e-4b4300466ff6
         run: npx --yes netlify-cli@latest deploy --prod --dir=dist --site="$NETLIFY_SITE_ID" --message="Ronal portfolio ${GITHUB_SHA}"
 
       - name: Explain skipped deployment
-        if: steps.netlify.outputs.configured != 'true'
+        if: github.event_name != 'pull_request' && steps.netlify.outputs.configured != 'true'
         run: |
           echo 'Portfolio build and validation succeeded.'
           echo 'Production deployment was skipped because NETLIFY_AUTH_TOKEN or NETLIFY_TOKEN is not configured in repository secrets.'
