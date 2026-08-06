@@ -35,6 +35,7 @@
 
 This branch differs from the default branch in the following detected paths:
 
+- [`README.md`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/ronal-portfolio-redesign-v2/README.md)
 - [`netlify.toml`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/ronal-portfolio-redesign-v2/netlify.toml)
 - [`portfolio/.gitignore`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/ronal-portfolio-redesign-v2/portfolio/.gitignore)
 - [`portfolio/.site-v2/part-00.b64`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/ronal-portfolio-redesign-v2/portfolio/.site-v2/part-00.b64)
