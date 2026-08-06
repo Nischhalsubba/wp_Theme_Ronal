@@ -1,0 +1,64 @@
+name: Deploy Ronal Portfolio to Netlify
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '.portfolio-src/**'
+      - 'build.sh'
+      - 'netlify.toml'
+      - '.github/workflows/deploy-netlify.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: netlify-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Build static portfolio
+        run: sh build.sh
+
+      - name: Validate generated site
+        run: |
+          test -s dist/index.html
+          test -s dist/resume.html
+          test -s dist/assets/css/portfolio.css
+          test -s dist/assets/js/portfolio.js
+          grep -q 'Ronal Chhetri' dist/index.html
+          node --check dist/assets/js/portfolio.js
+
+      - name: Detect Netlify credentials
+        id: netlify
+        env:
+          NETLIFY_AUTH_TOKEN_PRIMARY: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_AUTH_TOKEN_FALLBACK: ${{ secrets.NETLIFY_TOKEN }}
+        run: |
+          token="${NETLIFY_AUTH_TOKEN_PRIMARY:-${NETLIFY_AUTH_TOKEN_FALLBACK:-}}"
+          if [ -n "$token" ]; then
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Deploy production site
+        if: steps.netlify.outputs.configured == 'true'
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN || secrets.NETLIFY_TOKEN }}
+          NETLIFY_SITE_ID: 951bb1d6-f957-468d-978e-4b4300466ff6
+        run: npx --yes netlify-cli@latest deploy --prod --dir=dist --site="$NETLIFY_SITE_ID" --message="Ronal portfolio ${GITHUB_SHA}"
+
+      - name: Explain skipped deployment
+        if: steps.netlify.outputs.configured != 'true'
+        run: |
+          echo 'Portfolio build and validation succeeded.'
+          echo 'Production deployment was skipped because NETLIFY_AUTH_TOKEN or NETLIFY_TOKEN is not configured in repository secrets.'
