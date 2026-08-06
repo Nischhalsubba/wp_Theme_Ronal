@@ -35,6 +35,7 @@
 
 This branch differs from the default branch in the following detected paths:
 
+- [`README.md`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/version-portrait-assets/README.md)
 - [`portfolio/build.sh`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/version-portrait-assets/portfolio/build.sh)
 
 ## Quick start
