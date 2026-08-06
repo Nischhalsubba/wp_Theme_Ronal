@@ -36,6 +36,7 @@
 This branch differs from the default branch in the following detected paths:
 
 - [`.github/workflows/deploy-netlify.yml`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/netlify-deploy-diagnostic/.github/workflows/deploy-netlify.yml)
+- [`README.md`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/netlify-deploy-diagnostic/README.md)
 
 ## Quick start
 
