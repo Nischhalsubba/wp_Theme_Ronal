@@ -5,8 +5,7 @@ on:
     branches:
       - master
     paths:
-      - '.portfolio-src/**'
-      - 'build.sh'
+      - 'portfolio/**'
       - 'netlify.toml'
       - '.github/workflows/deploy-netlify.yml'
   workflow_dispatch:
@@ -26,16 +25,16 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build static portfolio
-        run: sh build.sh
+        run: cd portfolio && sh build.sh
 
       - name: Validate generated site
         run: |
-          test -s dist/index.html
-          test -s dist/resume.html
-          test -s dist/assets/css/portfolio.css
-          test -s dist/assets/js/portfolio.js
-          grep -q 'Ronal Chhetri' dist/index.html
-          node --check dist/assets/js/portfolio.js
+          test -s portfolio/dist/index.html
+          test -s portfolio/dist/resume.html
+          test -s portfolio/dist/assets/css/portfolio.css
+          test -s portfolio/dist/assets/js/portfolio.js
+          grep -q 'Ronal Chhetri' portfolio/dist/index.html
+          node --check portfolio/dist/assets/js/portfolio.js
 
       - name: Detect Netlify credentials
         id: netlify
@@ -55,7 +54,7 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN || secrets.NETLIFY_TOKEN }}
           NETLIFY_SITE_ID: 951bb1d6-f957-468d-978e-4b4300466ff6
-        run: npx --yes netlify-cli@latest deploy --prod --dir=dist --site="$NETLIFY_SITE_ID" --message="Ronal portfolio ${GITHUB_SHA}"
+        run: npx --yes netlify-cli@latest deploy --prod --dir=portfolio/dist --site="$NETLIFY_SITE_ID" --message="Ronal portfolio ${GITHUB_SHA}"
 
       - name: Explain skipped deployment
         if: steps.netlify.outputs.configured != 'true'
