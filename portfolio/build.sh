@@ -36,7 +36,7 @@ cat >> dist/assets/css/site.css <<'CSS'
 .ronal-portrait-card > .ronal-portrait-layer {
   position: absolute !important;
   inset: 0 !important;
-  z-index: 50 !important;
+  z-index: 2147483000 !important;
   display: flex !important;
   align-items: flex-end !important;
   justify-content: center !important;
@@ -67,7 +67,7 @@ cat >> dist/assets/css/site.css <<'CSS'
 
 .ronal-portrait-label {
   position: relative !important;
-  z-index: 60 !important;
+  z-index: 2147483001 !important;
 }
 
 @media (max-width: 48rem) {
