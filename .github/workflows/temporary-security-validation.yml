@@ -61,7 +61,7 @@ jobs:
           fs.writeFileSync('.security-audit-summary.json', JSON.stringify({counts:(report.metadata && report.metadata.vulnerabilities) || {}, findings}, null, 2) + '\n');
           NODE
 
-      - name: Record results
+      - name: Record repair-branch results
         if: always()
         run: |
           printf 'lock=%s\ninstall=%s\nbuild=%s\ntranslate=%s\n' "${{ steps.lock.outcome }}" "${{ steps.install.outcome }}" "${{ steps.build.outcome }}" "${{ steps.translate.outcome }}" > .security-validation-status.txt
@@ -75,6 +75,18 @@ jobs:
             git commit -m "Record isolated theme security validation"
             git push origin HEAD:agent/security-build-repair
           fi
+
+      - name: Report result on default branch
+        if: always()
+        run: |
+          result=success
+          if [ "${{ steps.lock.outcome }}" != "success" ] || [ "${{ steps.install.outcome }}" != "success" ] || [ "${{ steps.build.outcome }}" != "success" ]; then result=failure; fi
+          git fetch origin master
+          git switch -C master origin/master
+          printf 'repair=agent/security-build-repair\nresult=%s\nlock=%s\ninstall=%s\nbuild=%s\ntranslate=%s\n' "$result" "${{ steps.lock.outcome }}" "${{ steps.install.outcome }}" "${{ steps.build.outcome }}" "${{ steps.translate.outcome }}" > .temporary-security-validation-result.txt
+          git add .temporary-security-validation-result.txt
+          git commit -m "Record temporary theme validation result"
+          git push origin master
 
       - name: Require clean install and build
         if: always() && (steps.lock.outcome != 'success' || steps.install.outcome != 'success' || steps.build.outcome != 'success')
