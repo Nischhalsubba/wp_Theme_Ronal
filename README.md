@@ -40,6 +40,7 @@ This branch differs from the default branch in the following detected paths:
 - [`gulpfile.js`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/security-build-repair/gulpfile.js)
 - [`package-lock.json`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/security-build-repair/package-lock.json)
 - [`package.json`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/security-build-repair/package.json)
+- [`wpgulp.config.js`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/security-build-repair/wpgulp.config.js)
 
 ## Quick start
 
