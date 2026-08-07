@@ -65,15 +65,15 @@ flowchart TD
     ROOT --> P7[".eslintignore"]
     ROOT --> P8[".eslintrc.js"]
     ROOT --> P9[".gitignore"]
-    ROOT --> P10["build.sh"]
-    ROOT --> P11["DEPLOYMENT.md"]
-    ROOT --> P12["footer.php"]
-    ROOT --> P13["front-page.php"]
-    ROOT --> P14["front-page1.php"]
-    ROOT --> P15["functions.php"]
-    ROOT --> P16["gulpfile.babel.js"]
-    ROOT --> P17["header.php"]
-    ROOT --> MORE["+ 17 more top-level entries"]
+    ROOT --> P10[".security-validation-status.txt"]
+    ROOT --> P11[".temporary-security-validation-result.txt"]
+    ROOT --> P12["build.sh"]
+    ROOT --> P13["DEPLOYMENT.md"]
+    ROOT --> P14["footer.php"]
+    ROOT --> P15["front-page.php"]
+    ROOT --> P16["front-page1.php"]
+    ROOT --> P17["functions.php"]
+    ROOT --> MORE["+ 19 more top-level entries"]
 ```
 
 | Responsibility | Detected source paths |
@@ -127,12 +127,12 @@ Review authentication, authorization, input validation, dependency updates, secr
 
 ### Observability
 
-- [`assets/img/Facebook-Analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/master/assets/img/Facebook-Analytics-logo.jpg)
-- [`assets/img/Squared_Data_and_Analytics_Logo_1_ (2).jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/master/assets/img/Squared_Data_and_Analytics_Logo_1_%20%282%29.jpg)
 - [`assets/img/google-analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/master/assets/img/google-analytics-logo.jpg)
-- [`assets/img/raw/Facebook-Analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/master/assets/img/raw/Facebook-Analytics-logo.jpg)
-- [`assets/img/raw/Squared_Data_and_Analytics_Logo_1_ (2).jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/master/assets/img/raw/Squared_Data_and_Analytics_Logo_1_%20%282%29.jpg)
+- [`assets/img/Squared_Data_and_Analytics_Logo_1_ (2).jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/master/assets/img/Squared_Data_and_Analytics_Logo_1_%20%282%29.jpg)
+- [`assets/img/Facebook-Analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/master/assets/img/Facebook-Analytics-logo.jpg)
 - [`assets/img/raw/google-analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/master/assets/img/raw/google-analytics-logo.jpg)
+- [`assets/img/raw/Squared_Data_and_Analytics_Logo_1_ (2).jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/master/assets/img/raw/Squared_Data_and_Analytics_Logo_1_%20%282%29.jpg)
+- [`assets/img/raw/Facebook-Analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/master/assets/img/raw/Facebook-Analytics-logo.jpg)
 
 Define useful logs, metrics, traces, alerts, and rollback signals for production-facing branches.
 
