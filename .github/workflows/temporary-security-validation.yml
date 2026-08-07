@@ -1,0 +1,81 @@
+name: Temporary theme security validation
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - .github/workflows/temporary-security-validation.yml
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repair branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/security-build-repair
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Regenerate lockfile
+        id: lock
+        continue-on-error: true
+        run: npm install --package-lock-only --ignore-scripts --lockfile-version=1
+
+      - name: Clean install
+        id: install
+        if: steps.lock.outcome == 'success'
+        continue-on-error: true
+        run: npm ci
+
+      - name: Build
+        id: build
+        if: steps.install.outcome == 'success'
+        continue-on-error: true
+        run: npm run build > .security-build.log 2>&1
+
+      - name: Translation task
+        id: translate
+        if: steps.install.outcome == 'success'
+        continue-on-error: true
+        run: npm run translate > .security-translate.log 2>&1
+
+      - name: Audit
+        if: steps.install.outcome == 'success'
+        run: |
+          npm audit --json > .security-audit.json || true
+          node <<'NODE'
+          const fs = require('fs');
+          const report = JSON.parse(fs.readFileSync('.security-audit.json', 'utf8'));
+          const findings = Object.entries(report.vulnerabilities || {})
+            .filter(([, value]) => ['critical', 'high', 'moderate'].includes(value.severity))
+            .map(([name, value]) => ({name, severity:value.severity, direct:Boolean(value.isDirect), range:value.range, via:(value.via || []).map(x => typeof x === 'string' ? x : x.title), fixAvailable:value.fixAvailable}));
+          fs.writeFileSync('.security-audit-summary.json', JSON.stringify({counts:(report.metadata && report.metadata.vulnerabilities) || {}, findings}, null, 2) + '\n');
+          NODE
+
+      - name: Record results
+        if: always()
+        run: |
+          printf 'lock=%s\ninstall=%s\nbuild=%s\ntranslate=%s\n' "${{ steps.lock.outcome }}" "${{ steps.install.outcome }}" "${{ steps.build.outcome }}" "${{ steps.translate.outcome }}" > .security-validation-status.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json package-lock.json .security-validation-status.txt
+          for file in .security-build.log .security-translate.log .security-audit-summary.json; do
+            if [ -f "$file" ]; then git add "$file"; fi
+          done
+          if ! git diff --cached --quiet; then
+            git commit -m "Record isolated theme security validation"
+            git push origin HEAD:agent/security-build-repair
+          fi
+
+      - name: Require clean install and build
+        if: always() && (steps.lock.outcome != 'success' || steps.install.outcome != 'success' || steps.build.outcome != 'success')
+        run: exit 1
