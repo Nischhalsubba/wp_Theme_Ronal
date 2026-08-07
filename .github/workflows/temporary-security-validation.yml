@@ -1,6 +1,6 @@
 name: Temporary theme security validation
 
-# Final run after Dart Sass output-style normalization.
+# Final diagnostic run, split by build task.
 on:
   push:
     branches:
@@ -37,9 +37,39 @@ jobs:
         continue-on-error: true
         run: npm ci
 
-      - name: Build
-        id: build
+      - name: Styles
+        id: styles
         if: steps.install.outcome == 'success'
+        continue-on-error: true
+        run: npm run styles > .security-styles.log 2>&1
+
+      - name: RTL styles
+        id: rtl
+        if: steps.install.outcome == 'success'
+        continue-on-error: true
+        run: npm run stylesRTL > .security-rtl.log 2>&1
+
+      - name: Vendor JavaScript
+        id: vendors
+        if: steps.install.outcome == 'success'
+        continue-on-error: true
+        run: npm run vendorsJS > .security-vendors.log 2>&1
+
+      - name: Custom JavaScript
+        id: custom
+        if: steps.install.outcome == 'success'
+        continue-on-error: true
+        run: npm run customJS > .security-custom.log 2>&1
+
+      - name: Images
+        id: images
+        if: steps.install.outcome == 'success'
+        continue-on-error: true
+        run: npm run images > .security-images.log 2>&1
+
+      - name: Combined build
+        id: build
+        if: steps.install.outcome == 'success' && steps.styles.outcome == 'success' && steps.rtl.outcome == 'success' && steps.vendors.outcome == 'success' && steps.custom.outcome == 'success' && steps.images.outcome == 'success'
         continue-on-error: true
         run: npm run build > .security-build.log 2>&1
 
@@ -65,18 +95,18 @@ jobs:
       - name: Save diagnostic copies
         if: always()
         run: |
-          for file in .security-build.log .security-translate.log .security-audit-summary.json; do
+          for file in .security-styles.log .security-rtl.log .security-vendors.log .security-custom.log .security-images.log .security-build.log .security-translate.log .security-audit-summary.json; do
             if [ -f "$file" ]; then cp "$file" "/tmp/$file"; fi
           done
 
       - name: Record repair-branch results
         if: always()
         run: |
-          printf 'lock=%s\ninstall=%s\nbuild=%s\ntranslate=%s\n' "${{ steps.lock.outcome }}" "${{ steps.install.outcome }}" "${{ steps.build.outcome }}" "${{ steps.translate.outcome }}" > .security-validation-status.txt
+          printf 'lock=%s\ninstall=%s\nstyles=%s\nrtl=%s\nvendors=%s\ncustom=%s\nimages=%s\nbuild=%s\ntranslate=%s\n' "${{ steps.lock.outcome }}" "${{ steps.install.outcome }}" "${{ steps.styles.outcome }}" "${{ steps.rtl.outcome }}" "${{ steps.vendors.outcome }}" "${{ steps.custom.outcome }}" "${{ steps.images.outcome }}" "${{ steps.build.outcome }}" "${{ steps.translate.outcome }}" > .security-validation-status.txt
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add package.json package-lock.json .security-validation-status.txt
-          for file in .security-build.log .security-translate.log .security-audit-summary.json; do
+          for file in .security-styles.log .security-rtl.log .security-vendors.log .security-custom.log .security-images.log .security-build.log .security-translate.log .security-audit-summary.json; do
             if [ -f "$file" ]; then git add "$file"; fi
           done
           if ! git diff --cached --quiet; then
@@ -91,11 +121,14 @@ jobs:
           if [ "${{ steps.lock.outcome }}" != "success" ] || [ "${{ steps.install.outcome }}" != "success" ] || [ "${{ steps.build.outcome }}" != "success" ]; then result=failure; fi
           git fetch origin master
           git switch -C master origin/master
-          printf 'repair=agent/security-build-repair\nresult=%s\nlock=%s\ninstall=%s\nbuild=%s\ntranslate=%s\n' "$result" "${{ steps.lock.outcome }}" "${{ steps.install.outcome }}" "${{ steps.build.outcome }}" "${{ steps.translate.outcome }}" > .temporary-security-validation-result.txt
-          if [ -f /tmp/.security-build.log ]; then cp /tmp/.security-build.log .temporary-security-build.log; fi
-          if [ -f /tmp/.security-translate.log ]; then cp /tmp/.security-translate.log .temporary-security-translate.log; fi
+          printf 'repair=agent/security-install-repair\nresult=%s\nlock=%s\ninstall=%s\nstyles=%s\nrtl=%s\nvendors=%s\ncustom=%s\nimages=%s\nbuild=%s\ntranslate=%s\n' "$result" "${{ steps.lock.outcome }}" "${{ steps.install.outcome }}" "${{ steps.styles.outcome }}" "${{ steps.rtl.outcome }}" "${{ steps.vendors.outcome }}" "${{ steps.custom.outcome }}" "${{ steps.images.outcome }}" "${{ steps.build.outcome }}" "${{ steps.translate.outcome }}" > .temporary-security-validation-result.txt
+          for file in styles rtl vendors custom images build translate; do
+            source="/tmp/.security-$file.log"
+            target=".temporary-security-$file.log"
+            if [ -f "$source" ]; then cp "$source" "$target"; fi
+          done
           if [ -f /tmp/.security-audit-summary.json ]; then cp /tmp/.security-audit-summary.json .temporary-security-audit-summary.json; fi
-          git add .temporary-security-validation-result.txt .temporary-security-build.log .temporary-security-translate.log .temporary-security-audit-summary.json 2>/dev/null || true
+          git add .temporary-security-validation-result.txt .temporary-security-*.log .temporary-security-audit-summary.json 2>/dev/null || true
           if ! git diff --cached --quiet; then
             git commit -m "Record temporary theme validation diagnostics"
             git push origin master
