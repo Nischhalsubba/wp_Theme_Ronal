@@ -1,6 +1,5 @@
-name: Temporary theme security validation
+name: Complete WordPress theme security repair
 
-# Final diagnostic run after Browserslist repair, split by build task.
 on:
   push:
     branches:
@@ -12,10 +11,10 @@ permissions:
   contents: write
 
 jobs:
-  validate:
+  validate-and-integrate:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repair branch
+      - name: Check out exact repair branch
         uses: actions/checkout@v4
         with:
           ref: agent/security-build-repair
@@ -79,61 +78,55 @@ jobs:
         continue-on-error: true
         run: npm run translate > .security-translate.log 2>&1
 
-      - name: Audit
+      - name: Audit medium and above
+        id: audit_gate
         if: steps.install.outcome == 'success'
+        continue-on-error: true
         run: |
           npm audit --json > .security-audit.json || true
           node <<'NODE'
           const fs = require('fs');
           const report = JSON.parse(fs.readFileSync('.security-audit.json', 'utf8'));
+          const counts = (report.metadata && report.metadata.vulnerabilities) || {};
           const findings = Object.entries(report.vulnerabilities || {})
             .filter(([, value]) => ['critical', 'high', 'moderate'].includes(value.severity))
             .map(([name, value]) => ({name, severity:value.severity, direct:Boolean(value.isDirect), range:value.range, via:(value.via || []).map(x => typeof x === 'string' ? x : x.title), fixAvailable:value.fixAvailable}));
-          fs.writeFileSync('.security-audit-summary.json', JSON.stringify({counts:(report.metadata && report.metadata.vulnerabilities) || {}, findings}, null, 2) + '\n');
+          fs.writeFileSync('.security-audit-summary.json', JSON.stringify({counts, findings}, null, 2) + '\n');
+          const blocking = (counts.critical || 0) + (counts.high || 0) + (counts.moderate || 0);
+          if (blocking > 0) process.exit(1);
           NODE
 
-      - name: Save diagnostic copies
+      - name: Record repair validation
         if: always()
         run: |
-          for file in .security-styles.log .security-rtl.log .security-vendors.log .security-custom.log .security-images.log .security-build.log .security-translate.log .security-audit-summary.json; do
-            if [ -f "$file" ]; then cp "$file" "/tmp/$file"; fi
-          done
-
-      - name: Record repair-branch results
-        if: always()
-        run: |
-          printf 'lock=%s\ninstall=%s\nstyles=%s\nrtl=%s\nvendors=%s\ncustom=%s\nimages=%s\nbuild=%s\ntranslate=%s\n' "${{ steps.lock.outcome }}" "${{ steps.install.outcome }}" "${{ steps.styles.outcome }}" "${{ steps.rtl.outcome }}" "${{ steps.vendors.outcome }}" "${{ steps.custom.outcome }}" "${{ steps.images.outcome }}" "${{ steps.build.outcome }}" "${{ steps.translate.outcome }}" > .security-validation-status.txt
+          printf 'lock=%s\ninstall=%s\nstyles=%s\nrtl=%s\nvendors=%s\ncustom=%s\nimages=%s\nbuild=%s\ntranslate=%s\naudit=%s\n' "${{ steps.lock.outcome }}" "${{ steps.install.outcome }}" "${{ steps.styles.outcome }}" "${{ steps.rtl.outcome }}" "${{ steps.vendors.outcome }}" "${{ steps.custom.outcome }}" "${{ steps.images.outcome }}" "${{ steps.build.outcome }}" "${{ steps.translate.outcome }}" "${{ steps.audit_gate.outcome }}" > .security-validation-status.txt
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add package.json package-lock.json .security-validation-status.txt
+          git add package-lock.json .security-validation-status.txt
           for file in .security-styles.log .security-rtl.log .security-vendors.log .security-custom.log .security-images.log .security-build.log .security-translate.log .security-audit-summary.json; do
             if [ -f "$file" ]; then git add "$file"; fi
           done
           if ! git diff --cached --quiet; then
-            git commit -m "Record isolated theme security validation"
-            git push origin HEAD:agent/security-build-repair || true
+            git commit -m "Record final theme security validation"
+            git push origin HEAD:agent/security-build-repair
           fi
 
-      - name: Report result on default branch
-        if: always()
+      - name: Integrate validated repair into master
+        if: steps.lock.outcome == 'success' && steps.install.outcome == 'success' && steps.styles.outcome == 'success' && steps.rtl.outcome == 'success' && steps.vendors.outcome == 'success' && steps.custom.outcome == 'success' && steps.images.outcome == 'success' && steps.build.outcome == 'success' && steps.audit_gate.outcome == 'success'
         run: |
-          result=success
-          if [ "${{ steps.lock.outcome }}" != "success" ] || [ "${{ steps.install.outcome }}" != "success" ] || [ "${{ steps.build.outcome }}" != "success" ]; then result=failure; fi
-          git fetch origin master
+          git fetch origin master agent/security-build-repair
           git switch -C master origin/master
-          printf 'repair=agent/security-install-repair\nresult=%s\nlock=%s\ninstall=%s\nstyles=%s\nrtl=%s\nvendors=%s\ncustom=%s\nimages=%s\nbuild=%s\ntranslate=%s\n' "$result" "${{ steps.lock.outcome }}" "${{ steps.install.outcome }}" "${{ steps.styles.outcome }}" "${{ steps.rtl.outcome }}" "${{ steps.vendors.outcome }}" "${{ steps.custom.outcome }}" "${{ steps.images.outcome }}" "${{ steps.build.outcome }}" "${{ steps.translate.outcome }}" > .temporary-security-validation-result.txt
-          for file in styles rtl vendors custom images build translate; do
-            source="/tmp/.security-$file.log"
-            target=".temporary-security-$file.log"
-            if [ -f "$source" ]; then cp "$source" "$target"; fi
-          done
-          if [ -f /tmp/.security-audit-summary.json ]; then cp /tmp/.security-audit-summary.json .temporary-security-audit-summary.json; fi
-          git add .temporary-security-validation-result.txt .temporary-security-*.log .temporary-security-audit-summary.json 2>/dev/null || true
-          if ! git diff --cached --quiet; then
-            git commit -m "Record temporary theme validation diagnostics"
-            git push origin master
-          fi
+          git checkout origin/agent/security-build-repair -- \
+            gulpfile.js \
+            package.json \
+            package-lock.json \
+            wpgulp.config.js
+          git rm -f --ignore-unmatch .github/workflows/temporary-security-validation.yml
+          git rm -f --ignore-unmatch .temporary-security-*
+          git add -A
+          git commit -m "fix: complete WordPress theme security repair"
+          git push origin HEAD:master
 
-      - name: Require clean install and build
-        if: always() && (steps.lock.outcome != 'success' || steps.install.outcome != 'success' || steps.build.outcome != 'success')
+      - name: Require validated integration
+        if: always() && (steps.lock.outcome != 'success' || steps.install.outcome != 'success' || steps.styles.outcome != 'success' || steps.rtl.outcome != 'success' || steps.vendors.outcome != 'success' || steps.custom.outcome != 'success' || steps.images.outcome != 'success' || steps.build.outcome != 'success' || steps.audit_gate.outcome != 'success')
         run: exit 1
