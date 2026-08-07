@@ -1,6 +1,5 @@
 const gulp = require('gulp');
 const autoprefixer = require('autoprefixer');
-const browserSync = require('browser-sync').create();
 const cssnano = require('cssnano');
 const babel = require('gulp-babel');
 const concat = require('gulp-concat');
@@ -25,8 +24,7 @@ function styles() {
     .pipe(rename({ suffix: '.min' }))
     .pipe(postcss([cssnano()]))
     .pipe(sourcemaps.write('./maps'))
-    .pipe(gulp.dest(config.styleDestination))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest(config.styleDestination));
 }
 
 function stylesRTL() {
@@ -82,26 +80,11 @@ function translate() {
     .pipe(gulp.dest(`${config.translationDestination}/${config.translationFile}`));
 }
 
-function server(done) {
-  browserSync.init({
-    proxy: config.projectURL,
-    open: config.browserAutoOpen,
-    injectChanges: config.injectChanges
-  });
-  done();
-}
-
-function reload(done) {
-  browserSync.reload();
-  done();
-}
-
 function watchFiles() {
-  gulp.watch(config.watchPhp, reload);
   gulp.watch(config.watchStyles, styles);
-  gulp.watch(config.watchJsVendor, gulp.series(vendorsJS, reload));
-  gulp.watch(config.watchJsCustom, gulp.series(customJS, reload));
-  gulp.watch(config.imgSRC, gulp.series(images, reload));
+  gulp.watch(config.watchJsVendor, vendorsJS);
+  gulp.watch(config.watchJsCustom, customJS);
+  gulp.watch(config.imgSRC, images);
 }
 
 const build = gulp.parallel(styles, stylesRTL, vendorsJS, customJS, images);
@@ -114,4 +97,4 @@ gulp.task('images', images);
 gulp.task('translate', translate);
 gulp.task('clearCache', done => done());
 gulp.task('build', build);
-gulp.task('default', gulp.series(build, gulp.parallel(server, watchFiles)));
+gulp.task('default', gulp.series(build, watchFiles));
