@@ -112,6 +112,8 @@ jobs:
       - name: Integrate validated repair into master
         if: steps.lock.outcome == 'success' && steps.install.outcome == 'success' && steps.styles.outcome == 'success' && steps.rtl.outcome == 'success' && steps.vendors.outcome == 'success' && steps.custom.outcome == 'success' && steps.images.outcome == 'success' && steps.build.outcome == 'success' && steps.audit_gate.outcome == 'success'
         run: |
+          git reset --hard
+          git clean -fd
           git fetch origin master agent/security-build-repair
           git switch -C master origin/master
           git checkout origin/agent/security-build-repair -- \
@@ -130,6 +132,8 @@ jobs:
       - name: Publish failure diagnostics
         if: always() && (steps.lock.outcome != 'success' || steps.install.outcome != 'success' || steps.styles.outcome != 'success' || steps.rtl.outcome != 'success' || steps.vendors.outcome != 'success' || steps.custom.outcome != 'success' || steps.images.outcome != 'success' || steps.build.outcome != 'success' || steps.audit_gate.outcome != 'success')
         run: |
+          git reset --hard
+          git clean -fd
           git fetch origin master
           git switch -C master origin/master
           printf 'repair=agent/security-build-repair\nlock=%s\ninstall=%s\nstyles=%s\nrtl=%s\nvendors=%s\ncustom=%s\nimages=%s\nbuild=%s\ntranslate=%s\naudit=%s\n' "${{ steps.lock.outcome }}" "${{ steps.install.outcome }}" "${{ steps.styles.outcome }}" "${{ steps.rtl.outcome }}" "${{ steps.vendors.outcome }}" "${{ steps.custom.outcome }}" "${{ steps.images.outcome }}" "${{ steps.build.outcome }}" "${{ steps.translate.outcome }}" "${{ steps.audit_gate.outcome }}" > .temporary-security-validation-result.txt
