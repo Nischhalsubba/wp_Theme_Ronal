@@ -66,14 +66,14 @@ flowchart TD
     ROOT --> P8[".eslintrc.js"]
     ROOT --> P9[".gitignore"]
     ROOT --> P10[".security-validation-status.txt"]
-    ROOT --> P11[".temporary-security-validation-result.txt"]
-    ROOT --> P12["build.sh"]
-    ROOT --> P13["DEPLOYMENT.md"]
-    ROOT --> P14["footer.php"]
-    ROOT --> P15["front-page.php"]
-    ROOT --> P16["front-page1.php"]
-    ROOT --> P17["functions.php"]
-    ROOT --> MORE["+ 19 more top-level entries"]
+    ROOT --> P11[".temporary-security-audit-summary.json"]
+    ROOT --> P12[".temporary-security-validation-result.txt"]
+    ROOT --> P13["build.sh"]
+    ROOT --> P14["DEPLOYMENT.md"]
+    ROOT --> P15["footer.php"]
+    ROOT --> P16["front-page.php"]
+    ROOT --> P17["front-page1.php"]
+    ROOT --> MORE["+ 20 more top-level entries"]
 ```
 
 | Responsibility | Detected source paths |
