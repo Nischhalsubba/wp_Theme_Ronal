@@ -35,6 +35,7 @@
 
 This branch differs from the default branch in the following detected paths:
 
+- [`README.md`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/launch-readiness-mobile-seo/README.md)
 - [`netlify.toml`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/launch-readiness-mobile-seo/netlify.toml)
 - [`portfolio/build.sh`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/launch-readiness-mobile-seo/portfolio/build.sh)
 - [`portfolio/launch-enhancements.css`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/launch-readiness-mobile-seo/portfolio/launch-enhancements.css)
@@ -132,12 +133,12 @@ Review authentication, authorization, input validation, dependency updates, secr
 
 ### Observability
 
-- [`assets/img/google-analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/launch-readiness-mobile-seo/assets/img/google-analytics-logo.jpg)
-- [`assets/img/Squared_Data_and_Analytics_Logo_1_ (2).jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/launch-readiness-mobile-seo/assets/img/Squared_Data_and_Analytics_Logo_1_%20%282%29.jpg)
 - [`assets/img/Facebook-Analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/launch-readiness-mobile-seo/assets/img/Facebook-Analytics-logo.jpg)
-- [`assets/img/raw/google-analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/launch-readiness-mobile-seo/assets/img/raw/google-analytics-logo.jpg)
-- [`assets/img/raw/Squared_Data_and_Analytics_Logo_1_ (2).jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/launch-readiness-mobile-seo/assets/img/raw/Squared_Data_and_Analytics_Logo_1_%20%282%29.jpg)
+- [`assets/img/Squared_Data_and_Analytics_Logo_1_ (2).jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/launch-readiness-mobile-seo/assets/img/Squared_Data_and_Analytics_Logo_1_%20%282%29.jpg)
+- [`assets/img/google-analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/launch-readiness-mobile-seo/assets/img/google-analytics-logo.jpg)
 - [`assets/img/raw/Facebook-Analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/launch-readiness-mobile-seo/assets/img/raw/Facebook-Analytics-logo.jpg)
+- [`assets/img/raw/Squared_Data_and_Analytics_Logo_1_ (2).jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/launch-readiness-mobile-seo/assets/img/raw/Squared_Data_and_Analytics_Logo_1_%20%282%29.jpg)
+- [`assets/img/raw/google-analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/launch-readiness-mobile-seo/assets/img/raw/google-analytics-logo.jpg)
 
 Define useful logs, metrics, traces, alerts, and rollback signals for production-facing branches.
 
