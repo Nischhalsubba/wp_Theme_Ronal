@@ -38,6 +38,7 @@ This branch differs from the default branch in the following detected paths:
 - [`.github/workflows/security-build-repair.yml`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/security-build-repair/.github/workflows/security-build-repair.yml)
 - [`README.md`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/security-build-repair/README.md)
 - [`gulpfile.js`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/security-build-repair/gulpfile.js)
+- [`package-lock.json`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/security-build-repair/package-lock.json)
 - [`package.json`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/agent/security-build-repair/package.json)
 
 ## Quick start
