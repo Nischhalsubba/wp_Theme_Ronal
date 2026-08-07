@@ -127,12 +127,12 @@ Review authentication, authorization, input validation, dependency updates, secr
 
 ### Observability
 
-- [`assets/img/google-analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/dependabot/npm_and_yarn/ini-1.3.7/assets/img/google-analytics-logo.jpg)
-- [`assets/img/Squared_Data_and_Analytics_Logo_1_ (2).jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/dependabot/npm_and_yarn/ini-1.3.7/assets/img/Squared_Data_and_Analytics_Logo_1_%20%282%29.jpg)
 - [`assets/img/Facebook-Analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/dependabot/npm_and_yarn/ini-1.3.7/assets/img/Facebook-Analytics-logo.jpg)
-- [`assets/img/raw/google-analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/dependabot/npm_and_yarn/ini-1.3.7/assets/img/raw/google-analytics-logo.jpg)
-- [`assets/img/raw/Squared_Data_and_Analytics_Logo_1_ (2).jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/dependabot/npm_and_yarn/ini-1.3.7/assets/img/raw/Squared_Data_and_Analytics_Logo_1_%20%282%29.jpg)
+- [`assets/img/Squared_Data_and_Analytics_Logo_1_ (2).jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/dependabot/npm_and_yarn/ini-1.3.7/assets/img/Squared_Data_and_Analytics_Logo_1_%20%282%29.jpg)
+- [`assets/img/google-analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/dependabot/npm_and_yarn/ini-1.3.7/assets/img/google-analytics-logo.jpg)
 - [`assets/img/raw/Facebook-Analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/dependabot/npm_and_yarn/ini-1.3.7/assets/img/raw/Facebook-Analytics-logo.jpg)
+- [`assets/img/raw/Squared_Data_and_Analytics_Logo_1_ (2).jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/dependabot/npm_and_yarn/ini-1.3.7/assets/img/raw/Squared_Data_and_Analytics_Logo_1_%20%282%29.jpg)
+- [`assets/img/raw/google-analytics-logo.jpg`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/dependabot/npm_and_yarn/ini-1.3.7/assets/img/raw/google-analytics-logo.jpg)
 
 Define useful logs, metrics, traces, alerts, and rollback signals for production-facing branches.
 
