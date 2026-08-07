@@ -1,0 +1,125 @@
+{
+  "counts": {
+    "info": 0,
+    "low": 3,
+    "moderate": 1,
+    "high": 6,
+    "critical": 3,
+    "total": 13
+  },
+  "findings": [
+    {
+      "name": "@babel/helpers",
+      "severity": "moderate",
+      "direct": false,
+      "range": "<7.26.10",
+      "via": [
+        "Babel has inefficient RegExp complexity in generated code with .replace when transpiling named capturing groups"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "@babel/traverse",
+      "severity": "critical",
+      "direct": false,
+      "range": "<7.23.2",
+      "via": [
+        "Babel vulnerable to arbitrary code execution when compiling specifically crafted malicious code"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "acorn",
+      "severity": "high",
+      "direct": false,
+      "range": "5.5.0 - 5.7.3 || 6.0.0 - 6.4.0",
+      "via": [
+        "Regular Expression Denial of Service in Acorn",
+        "Regular Expression Denial of Service in Acorn"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "brace-expansion",
+      "severity": "high",
+      "direct": false,
+      "range": "<=1.1.17",
+      "via": [
+        "brace-expansion Regular Expression Denial of Service vulnerability",
+        "brace-expansion: Zero-step sequence causes process hang and memory exhaustion",
+        "brace-expansion: DoS via exponential-time expansion of consecutive non-expanding {} groups",
+        "brace-expansion: DoS via unbounded expansion length causing an out-of-memory process crash",
+        "brace-expansion: DoS via unbounded intermediate arrays, bypassing the CVE-2026-14257 mitigation"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "decode-uri-component",
+      "severity": "high",
+      "direct": false,
+      "range": "<0.2.1",
+      "via": [
+        "decode-uri-component vulnerable to Denial of Service (DoS)"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "ini",
+      "severity": "high",
+      "direct": false,
+      "range": "<1.3.6",
+      "via": [
+        "ini before 1.3.6 vulnerable to Prototype Pollution via ini.parse"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "json5",
+      "severity": "high",
+      "direct": false,
+      "range": "2.0.0 - 2.2.1",
+      "via": [
+        "Prototype Pollution in JSON5 via Parse Method"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "lodash",
+      "severity": "critical",
+      "direct": false,
+      "range": "<=4.17.23",
+      "via": [
+        "Command Injection in lodash",
+        "Prototype Pollution in lodash",
+        "Prototype Pollution in lodash",
+        "Regular Expression Denial of Service (ReDoS) in lodash",
+        "lodash vulnerable to Code Injection via `_.template` imports key names",
+        "lodash vulnerable to Prototype Pollution via array path bypass in `_.unset` and `_.omit`",
+        "Lodash has Prototype Pollution Vulnerability in `_.unset` and `_.omit` functions"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "minimist",
+      "severity": "critical",
+      "direct": false,
+      "range": "1.0.0 - 1.2.5",
+      "via": [
+        "Prototype Pollution in minimist",
+        "Prototype Pollution in minimist"
+      ],
+      "fixAvailable": true
+    },
+    {
+      "name": "semver",
+      "severity": "high",
+      "direct": false,
+      "range": "2.0.0-alpha - 5.7.1 || 6.0.0 - 6.3.0",
+      "via": [
+        "semver vulnerable to Regular Expression Denial of Service",
+        "semver vulnerable to Regular Expression Denial of Service"
+      ],
+      "fixAvailable": true
+    }
+  ]
+}
