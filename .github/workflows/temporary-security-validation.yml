@@ -1,6 +1,6 @@
 name: Temporary theme security validation
 
-# Final diagnostic run, split by build task.
+# Final diagnostic run after Browserslist repair, split by build task.
 on:
   push:
     branches:
