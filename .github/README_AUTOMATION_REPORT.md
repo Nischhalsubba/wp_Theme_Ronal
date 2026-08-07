@@ -14,7 +14,7 @@ Generator: `aed303eed8a536f2dda075c8be583693325aac37`
 | `agent/restore-hero-portrait` | unchanged | README already matched the standard |
 | `agent/ronal-portfolio-redesign-v2` | unchanged | README already matched the standard |
 | `agent/ronal-seo-portfolio` | unchanged | README already matched the standard |
-| `agent/security-build-repair` | unchanged | README already matched the standard |
+| `agent/security-build-repair` | updated | Branch-specific README committed |
 | `agent/show-full-portrait` | unchanged | README already matched the standard |
 | `agent/use-imgur-hero` | unchanged | README already matched the standard |
 | `agent/use-uploaded-hero-portrait` | unchanged | README already matched the standard |
