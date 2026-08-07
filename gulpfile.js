@@ -14,11 +14,12 @@ const wpPot = require('gulp-wp-pot');
 const config = require('./wpgulp.config');
 
 const prefixer = () => autoprefixer({ overrideBrowserslist: config.BROWSERS_LIST });
+const sassOutputStyle = config.outputStyle === 'compressed' ? 'compressed' : 'expanded';
 
 function styles() {
   return gulp.src(config.styleSRC)
     .pipe(sourcemaps.init())
-    .pipe(sass({ outputStyle: config.outputStyle }))
+    .pipe(sass({ outputStyle: sassOutputStyle }))
     .pipe(postcss([prefixer()]))
     .pipe(gulp.dest(config.styleDestination))
     .pipe(rename({ suffix: '.min' }))
@@ -30,7 +31,7 @@ function styles() {
 function stylesRTL() {
   return gulp.src(config.styleSRC)
     .pipe(sourcemaps.init())
-    .pipe(sass({ outputStyle: config.outputStyle }))
+    .pipe(sass({ outputStyle: sassOutputStyle }))
     .pipe(postcss([prefixer()]))
     .pipe(rtlcss())
     .pipe(rename({ suffix: '-rtl' }))
