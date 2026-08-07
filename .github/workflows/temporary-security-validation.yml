@@ -61,6 +61,13 @@ jobs:
           fs.writeFileSync('.security-audit-summary.json', JSON.stringify({counts:(report.metadata && report.metadata.vulnerabilities) || {}, findings}, null, 2) + '\n');
           NODE
 
+      - name: Save diagnostic copies
+        if: always()
+        run: |
+          for file in .security-build.log .security-translate.log .security-audit-summary.json; do
+            if [ -f "$file" ]; then cp "$file" "/tmp/$file"; fi
+          done
+
       - name: Record repair-branch results
         if: always()
         run: |
@@ -73,7 +80,7 @@ jobs:
           done
           if ! git diff --cached --quiet; then
             git commit -m "Record isolated theme security validation"
-            git push origin HEAD:agent/security-build-repair
+            git push origin HEAD:agent/security-build-repair || true
           fi
 
       - name: Report result on default branch
@@ -84,9 +91,14 @@ jobs:
           git fetch origin master
           git switch -C master origin/master
           printf 'repair=agent/security-build-repair\nresult=%s\nlock=%s\ninstall=%s\nbuild=%s\ntranslate=%s\n' "$result" "${{ steps.lock.outcome }}" "${{ steps.install.outcome }}" "${{ steps.build.outcome }}" "${{ steps.translate.outcome }}" > .temporary-security-validation-result.txt
-          git add .temporary-security-validation-result.txt
-          git commit -m "Record temporary theme validation result"
-          git push origin master
+          if [ -f /tmp/.security-build.log ]; then cp /tmp/.security-build.log .temporary-security-build.log; fi
+          if [ -f /tmp/.security-translate.log ]; then cp /tmp/.security-translate.log .temporary-security-translate.log; fi
+          if [ -f /tmp/.security-audit-summary.json ]; then cp /tmp/.security-audit-summary.json .temporary-security-audit-summary.json; fi
+          git add .temporary-security-validation-result.txt .temporary-security-build.log .temporary-security-translate.log .temporary-security-audit-summary.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Record temporary theme validation diagnostics"
+            git push origin master
+          fi
 
       - name: Require clean install and build
         if: always() && (steps.lock.outcome != 'success' || steps.install.outcome != 'success' || steps.build.outcome != 'success')
