@@ -18,7 +18,7 @@ module.exports = {
 	// Style options.
 	styleSRC: './assets/css/style.scss', // Path to main .scss file.
 	styleDestination: './', // Path to place the compiled CSS file. Default set to root folder.
-	outputStyle: 'compact', // Available options → 'compact' or 'compressed' or 'nested' or 'expanded'
+	outputStyle: 'compact', // Legacy value; the modern gulpfile maps this to expanded output.
 	errLogToConsole: true,
 	precision: 10,
 
@@ -51,10 +51,9 @@ module.exports = {
 	lastTranslator: 'Nischal Raj Subba <hinischalsubba@email.com>', // Last translator Email ID.
 	team: '', // Team's Email ID.
 
-	// Browsers you care about for autoprefixing. Browserlist https://github.com/ai/browserslist
-	// The following list is set as per WordPress requirements. Though, Feel free to change.
+	// Browsers you care about for autoprefixing. Browserlist https://github.com/browserslist/browserslist
 	BROWSERS_LIST: [
-		'last 2 version',
+		'last 2 versions',
 		'> 1%',
 		'ie >= 11',
 		'last 1 Android versions',
