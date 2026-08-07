@@ -1,5 +1,6 @@
 name: Temporary theme security validation
 
+# Retrigger after the latest Sass and dependency repair updates.
 on:
   push:
     branches:
@@ -90,7 +91,7 @@ jobs:
           if [ "${{ steps.lock.outcome }}" != "success" ] || [ "${{ steps.install.outcome }}" != "success" ] || [ "${{ steps.build.outcome }}" != "success" ]; then result=failure; fi
           git fetch origin master
           git switch -C master origin/master
-          printf 'repair=agent/security-build-repair\nresult=%s\nlock=%s\ninstall=%s\nbuild=%s\ntranslate=%s\n' "$result" "${{ steps.lock.outcome }}" "${{ steps.install.outcome }}" "${{ steps.build.outcome }}" "${{ steps.translate.outcome }}" > .temporary-security-validation-result.txt
+          printf 'repair=agent/security-install-repair\nresult=%s\nlock=%s\ninstall=%s\nbuild=%s\ntranslate=%s\n' "$result" "${{ steps.lock.outcome }}" "${{ steps.install.outcome }}" "${{ steps.build.outcome }}" "${{ steps.translate.outcome }}" > .temporary-security-validation-result.txt
           if [ -f /tmp/.security-build.log ]; then cp /tmp/.security-build.log .temporary-security-build.log; fi
           if [ -f /tmp/.security-translate.log ]; then cp /tmp/.security-translate.log .temporary-security-translate.log; fi
           if [ -f /tmp/.security-audit-summary.json ]; then cp /tmp/.security-audit-summary.json .temporary-security-audit-summary.json; fi
