@@ -1,4 +1,4 @@
-name: WordPress theme security validation
+name: WordPress theme exact repair validation
 
 on:
   push:
@@ -7,6 +7,7 @@ on:
     paths:
       - package.json
       - gulpfile.js
+      - wpgulp.config.js
       - .github/workflows/security-build-repair.yml
 
 permissions:
@@ -16,7 +17,7 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out branch
+      - name: Check out repair branch
         uses: actions/checkout@v4
         with:
           ref: agent/security-build-repair
@@ -27,7 +28,7 @@ jobs:
         with:
           node-version: 20
 
-      - name: Regenerate v1 lockfile
+      - name: Regenerate lockfile
         id: lock
         continue-on-error: true
         run: npm install --package-lock-only --ignore-scripts --lockfile-version=1
@@ -38,57 +39,76 @@ jobs:
         continue-on-error: true
         run: npm ci
 
-      - name: Build theme assets
-        id: build
+      - name: Styles
+        id: styles
         if: steps.install.outcome == 'success'
         continue-on-error: true
-        run: |
-          set -o pipefail
-          npm run build 2>&1 | tee .security-build.log
+        run: npm run styles > .security-styles.log 2>&1
 
-      - name: Audit locked tree
+      - name: RTL styles
+        id: rtl
         if: steps.install.outcome == 'success'
-        run: npm audit --json > .security-audit.json || true
+        continue-on-error: true
+        run: npm run stylesRTL > .security-rtl.log 2>&1
 
-      - name: Summarize audit
+      - name: Vendor JavaScript
+        id: vendors
+        if: steps.install.outcome == 'success'
+        continue-on-error: true
+        run: npm run vendorsJS > .security-vendors.log 2>&1
+
+      - name: Custom JavaScript
+        id: custom
+        if: steps.install.outcome == 'success'
+        continue-on-error: true
+        run: npm run customJS > .security-custom.log 2>&1
+
+      - name: Images
+        id: images
+        if: steps.install.outcome == 'success'
+        continue-on-error: true
+        run: npm run images > .security-images.log 2>&1
+
+      - name: Combined build
+        id: build
+        if: steps.install.outcome == 'success' && steps.styles.outcome == 'success' && steps.rtl.outcome == 'success' && steps.vendors.outcome == 'success' && steps.custom.outcome == 'success' && steps.images.outcome == 'success'
+        continue-on-error: true
+        run: npm run build > .security-build.log 2>&1
+
+      - name: Translation task
+        id: translate
+        if: steps.install.outcome == 'success'
+        continue-on-error: true
+        run: npm run translate > .security-translate.log 2>&1
+
+      - name: Audit locked dependency tree
         if: steps.install.outcome == 'success'
         run: |
+          npm audit --json > .security-audit.json || true
           node <<'NODE'
           const fs = require('fs');
           const report = JSON.parse(fs.readFileSync('.security-audit.json', 'utf8'));
-          const wanted = new Set(['critical', 'high', 'moderate']);
           const findings = Object.entries(report.vulnerabilities || {})
-            .filter(([, value]) => wanted.has(value.severity))
-            .map(([name, value]) => ({name, severity: value.severity, direct: Boolean(value.isDirect), range: value.range, via: (value.via || []).map(item => typeof item === 'string' ? item : item.title), fixAvailable: value.fixAvailable}));
-          fs.writeFileSync('.security-audit-summary.json', JSON.stringify({counts: report.metadata && report.metadata.vulnerabilities || {}, findings}, null, 2) + '\n');
+            .filter(([, value]) => ['critical', 'high', 'moderate'].includes(value.severity))
+            .map(([name, value]) => ({name, severity:value.severity, direct:Boolean(value.isDirect), range:value.range, via:(value.via || []).map(x => typeof x === 'string' ? x : x.title), fixAvailable:value.fixAvailable}));
+          fs.writeFileSync('.security-audit-summary.json', JSON.stringify({counts:(report.metadata && report.metadata.vulnerabilities) || {}, findings}, null, 2) + '\n');
           NODE
 
-      - name: Commit build-validated lockfile
-        if: steps.lock.outcome == 'success' && steps.install.outcome == 'success' && steps.build.outcome == 'success'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add package-lock.json
-          if ! git diff --cached --quiet; then
-            git commit -m "Regenerate lockfile for security update"
-            git push origin HEAD:agent/security-build-repair
-          fi
-
-      - name: Record validation
+      - name: Record exact validation result
         if: always()
         run: |
-          printf 'lock=%s\ninstall=%s\nbuild=%s\n' "${{ steps.lock.outcome }}" "${{ steps.install.outcome }}" "${{ steps.build.outcome }}" > .security-validation-status.txt
+          printf 'lock=%s\ninstall=%s\nstyles=%s\nrtl=%s\nvendors=%s\ncustom=%s\nimages=%s\nbuild=%s\ntranslate=%s\n' "${{ steps.lock.outcome }}" "${{ steps.install.outcome }}" "${{ steps.styles.outcome }}" "${{ steps.rtl.outcome }}" "${{ steps.vendors.outcome }}" "${{ steps.custom.outcome }}" "${{ steps.images.outcome }}" "${{ steps.build.outcome }}" "${{ steps.translate.outcome }}" > .security-validation-status.txt
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .security-validation-status.txt
-          for file in .security-build.log .security-audit-summary.json; do
+          git add package-lock.json .security-validation-status.txt
+          for file in .security-styles.log .security-rtl.log .security-vendors.log .security-custom.log .security-images.log .security-build.log .security-translate.log .security-audit-summary.json; do
             if [ -f "$file" ]; then git add "$file"; fi
           done
           if ! git diff --cached --quiet; then
-            git commit -m "Record WordPress theme security diagnostics"
+            git commit -m "Record exact theme security validation"
             git push origin HEAD:agent/security-build-repair
           fi
 
-      - name: Fail when install or build did not pass
+      - name: Require clean install and combined build
         if: always() && (steps.lock.outcome != 'success' || steps.install.outcome != 'success' || steps.build.outcome != 'success')
         run: exit 1
