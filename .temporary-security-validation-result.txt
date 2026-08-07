@@ -1,0 +1,6 @@
+repair=agent/security-build-repair
+result=failure
+lock=success
+install=success
+build=failure
+translate=success
