@@ -23,7 +23,7 @@
 
 | Item | Detected value |
 |---|---|
-| Purpose | A custom WordPress portfolio theme for Ronal Chhetri with Sass, Gulp, RTL, translation, image optimization, and JavaScript build workflows. |
+| Purpose | A custom WordPress portfolio theme for Ronal Chhetri with Sass, Gulp, RTL, translation, and JavaScript build workflows. |
 | Branch role | Default branch |
 | Stack | WordPress, Sass, PHP, JavaScript, CSS, HTML |
 | Manifests | package.json |
@@ -42,6 +42,7 @@ This is the repository's default branch.
 ```bash
 npm install
 npm run start
+npm run build
 ```
 
 ### Configuration surface
@@ -66,14 +67,14 @@ flowchart TD
     ROOT --> P8[".eslintrc.js"]
     ROOT --> P9[".gitignore"]
     ROOT --> P10[".security-validation-status.txt"]
-    ROOT --> P11[".security-validation-trigger"]
-    ROOT --> P12[".temporary-security-audit-summary.json"]
-    ROOT --> P13[".temporary-security-validation-result.txt"]
-    ROOT --> P14["build.sh"]
-    ROOT --> P15["DEPLOYMENT.md"]
-    ROOT --> P16["footer.php"]
-    ROOT --> P17["front-page.php"]
-    ROOT --> MORE["+ 21 more top-level entries"]
+    ROOT --> P11["build.sh"]
+    ROOT --> P12["DEPLOYMENT.md"]
+    ROOT --> P13["footer.php"]
+    ROOT --> P14["front-page.php"]
+    ROOT --> P15["front-page1.php"]
+    ROOT --> P16["functions.php"]
+    ROOT --> P17["gulpfile.babel.js"]
+    ROOT --> MORE["+ 19 more top-level entries"]
 ```
 
 | Responsibility | Detected source paths |
@@ -112,6 +113,7 @@ flowchart LR
 
 Detected commands:
 - `npm run start`
+- `npm run build`
 
 </td>
 <td width="33%" valign="top">
@@ -155,7 +157,6 @@ flowchart LR
 
 - [`.github/workflows/apply-interactive-readme.yml`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/master/.github/workflows/apply-interactive-readme.yml)
 - [`.github/workflows/deploy-netlify.yml`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/master/.github/workflows/deploy-netlify.yml)
-- [`.github/workflows/temporary-security-validation.yml`](https://github.com/Nischhalsubba/wp_Theme_Ronal/blob/master/.github/workflows/temporary-security-validation.yml)
 
 ## Contribution flow
 
