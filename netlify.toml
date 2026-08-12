@@ -1,5 +1,5 @@
 [build]
-  base = "portfolio"
+  base = "workspace/portfolio"
   command = "sh build.sh"
   publish = "dist"
 

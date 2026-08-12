@@ -1,0 +1,31 @@
+name: Quality
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Validate WordPress PHP
+        run: |
+          find workspace -maxdepth 1 -type f -name '*.php' -print0 | xargs -0 -r -n1 php -l
+
+      - name: Build portfolio
+        run: cd workspace/portfolio && sh build.sh
+
+      - name: Validate portfolio output
+        run: |
+          test -s workspace/portfolio/dist/index.html
+          test -s workspace/portfolio/dist/assets/css/portfolio.css
+          test -s workspace/portfolio/dist/assets/js/portfolio.js
+          node --check workspace/portfolio/dist/assets/js/portfolio.js
