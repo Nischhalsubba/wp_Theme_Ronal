@@ -30,10 +30,10 @@ jobs:
         run: |
           test -s workspace/portfolio/dist/index.html
           test -s workspace/portfolio/dist/resume.html
-          test -s workspace/portfolio/dist/assets/css/portfolio.css
-          test -s workspace/portfolio/dist/assets/js/portfolio.js
+          test -s workspace/portfolio/dist/assets/css/site.css
+          test -s workspace/portfolio/dist/assets/js/site.js
           grep -q 'Ronal Chhetri' workspace/portfolio/dist/index.html
-          node --check workspace/portfolio/dist/assets/js/portfolio.js
+          node --check workspace/portfolio/dist/assets/js/site.js
 
       - name: Detect Netlify credentials
         id: netlify
