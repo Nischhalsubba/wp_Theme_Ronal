@@ -1,23 +1,17 @@
-name: Deploy Ronal Portfolio to Netlify
+name: Validate Ronal Portfolio
 
 on:
-  push:
-    branches: [master]
-    paths:
-      - 'workspace/portfolio/**'
-      - 'netlify.toml'
-      - '.github/workflows/deploy-netlify.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: netlify-production
+  group: ronal-portfolio-validation
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -35,28 +29,7 @@ jobs:
           grep -q 'Ronal Chhetri' workspace/portfolio/dist/index.html
           node --check workspace/portfolio/dist/assets/js/site.js
 
-      - name: Detect Netlify credentials
-        id: netlify
-        env:
-          NETLIFY_AUTH_TOKEN_PRIMARY: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_AUTH_TOKEN_FALLBACK: ${{ secrets.NETLIFY_TOKEN }}
+      - name: Deployment policy
         run: |
-          token="${NETLIFY_AUTH_TOKEN_PRIMARY:-${NETLIFY_AUTH_TOKEN_FALLBACK:-}}"
-          if [ -n "$token" ]; then
-            echo "configured=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "configured=false" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Deploy production site
-        if: steps.netlify.outputs.configured == 'true'
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN || secrets.NETLIFY_TOKEN }}
-          NETLIFY_SITE_ID: 951bb1d6-f957-468d-978e-4b4300466ff6
-        run: npx --yes netlify-cli@latest deploy --prod --dir=workspace/portfolio/dist --site="$NETLIFY_SITE_ID" --message="Ronal portfolio ${GITHUB_SHA}"
-
-      - name: Explain skipped deployment
-        if: steps.netlify.outputs.configured != 'true'
-        run: |
-          echo 'Portfolio build and validation succeeded.'
-          echo 'Production deployment was skipped because NETLIFY_AUTH_TOKEN or NETLIFY_TOKEN is not configured in repository secrets.'
+          echo 'Validation only: this workflow does not deploy.'
+          echo 'Netlify Git integration is the only production deployment path.'
