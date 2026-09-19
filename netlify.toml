@@ -2,7 +2,7 @@
   base = "workspace/portfolio"
   command = "sh build.sh"
   publish = "dist"
-  ignore = "if [ \"$BRANCH\" != \"master\" ]; then exit 0; fi; git log -1 --pretty=%B \"$COMMIT_REF\" | grep -Fq '[deploy]' || exit 0; exit 1"
+  ignore = "if [ \"$PULL_REQUEST\" = \"true\" ] || [ \"$BRANCH\" != \"master\" ]; then exit 0; fi; subject=\"$(git log -1 --pretty=%s \"$COMMIT_REF\")\"; case \"$subject\" in *\"[deploy]\") exit 1 ;; *) exit 0 ;; esac"
 
 [build.environment]
   NODE_VERSION = "22"
