@@ -1,0 +1,35 @@
+name: Validate Ronal Portfolio
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ronal-portfolio-validation
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Build static portfolio
+        run: cd workspace/portfolio && sh build.sh
+
+      - name: Validate generated site
+        run: |
+          test -s workspace/portfolio/dist/index.html
+          test -s workspace/portfolio/dist/resume.html
+          test -s workspace/portfolio/dist/assets/css/site.css
+          test -s workspace/portfolio/dist/assets/js/site.js
+          grep -q 'Ronal Chhetri' workspace/portfolio/dist/index.html
+          node --check workspace/portfolio/dist/assets/js/site.js
+
+      - name: Deployment policy
+        run: |
+          echo 'Validation only: this workflow does not deploy.'
+          echo 'Netlify Git integration is the only production deployment path.'
